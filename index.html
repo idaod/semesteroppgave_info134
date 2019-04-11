@@ -5,7 +5,7 @@
     <title></title>
     <h1> Datasett om Norges befolkning </h1>
     <hr>
-    <script type="text/javascript" src = "javascript/java.js"> </script>
+    <script type="text/javascript" src="javascript/java.js"></script>
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
   </head>
   <body>
@@ -13,8 +13,8 @@
     <!-- navigasjonen -->
 
     <ul id="nav">
-      <li> <a href="#"> Introduksjon</a> </li>
-      <li> <a href="#"> Oversikt</a> </li>
+      <li> <a onclick="hjem();"> Introduksjon</a> </li>
+      <li> <a onclick="oversikt();"> Oversikt</a> </li>
       <li> <a href="#"> Detaljer</a> </li>
       <li> <a href="#"> Sammeligning</a></li>
     </ul>
@@ -37,9 +37,14 @@
         <ul> <a href = "http://data.ssb.no/api/v0/dataset/104857?lang=no." <title>Befolkning</title></a></ul>
         <ul> <a href = "http://data.ssb.no/api/v0/dataset/100145?lang=no." <title>Sysselsetting</title></a></ul>
         <ul> <a href = "http://data.ssb.no/api/v0/dataset/85432?lang=no."<title>Utdanning</title></a></ul>
-
     </div>
+
+
     <div class = "oversikt">
+      <p id="hello"></p>
+    </div>
+
+
 
 
 <!-- Bunntekst -->
