@@ -6,14 +6,17 @@ body{
   border: 10%;
 }
 
+
 #nav > li{
-  float:left;
-  list-style: none;
   text-align: center;
   margin-right: 30px;
-  width: 120px;
-  line-height: 70px;
-  border-radius: 30%;
+  display: inline-block;
+  justify-content: left;
+  flex-direction: row;
+}
+
+#nav > li:hover{
+  cursor: pointer;
 }
 
 

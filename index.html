@@ -13,24 +13,25 @@
     <!-- navigasjonen -->
   <div>
     <ul id="nav">
-      <li> <a onclick="hjem();"> Introduksjon</a> </li>
-      <li> <a onclick="oversikt();"> Oversikt</a> </li>
-      <li> <a href="#"> Detaljer</a> </li>
-      <li> <a href="#"> Sammeligning</a></li>
+      <li> <a onclick="#"> Introduksjon</a> </li>
+      <li> <a onclick="#"> Oversikt</a> </li>
+      <li> <a onclick="#"> Detaljer</a> </li>
+      <li> <a onclick="#"> Sammeligning</a></li>
     </ul>
   </div>
 
 <!-- Hovedinnholdet -->
 
     <!-- Introduksjon -->
-    <div class = "introduksjon">
+
+    <div class="introduksjon">
+      <p> Her finner du tre filer med informasjon om Norges befolkning.
+        Alle datasettene er i utgangspunktet hentet fra SSB, men noen detaljer er
+        fjernet. Dataene inneholder derfor noen unøyaktigheter.</p>
       <ol>
-        <p> Her finner du tre filer med informasjon om Norges befolkning.
-          Alle datasettene er i utgangspunktet hentet fra SSB, men noen detaljer er
-          fjernet. Dataene inneholder derfor noen unøyaktigheter.</p>
-        <li> <a href = "http://data.ssb.no/api/v0/dataset/104857?lang=no." <title>Befolkning</title></a></li>
-        <li> <a href = "http://data.ssb.no/api/v0/dataset/100145?lang=no." <title>Sysselsetting</title></a></li>
-        <li> <a href = "http://data.ssb.no/api/v0/dataset/85432?lang=no."<title>Utdanning</title></a></li>
+        <li> <a href="http://data.ssb.no/api/v0/dataset/104857?lang=no." <title>Befolkning</title></a></li>
+        <li> <a href="http://data.ssb.no/api/v0/dataset/100145?lang=no." <title>Sysselsetting</title></a></li>
+        <li> <a href="http://data.ssb.no/api/v0/dataset/85432?lang=no." <title>Utdanning</title></a></li>
       </ol>
     </div>
 
@@ -45,7 +46,7 @@
 <!-- Footer -->
     </div>
     <hr>
-    <div id = "detaljer">
+    <div id="detaljer">
       <form align="center" id="form">
         Kommunenummer:
         <input type="text" id="nummer" placeholder="Skriv inn kommunenummer">
