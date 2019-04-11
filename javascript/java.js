@@ -9,6 +9,8 @@ function oversikt() {
     if (this.readyState == 4 && this.status == 200) {
       var variabel = JSON.parse(this.responseText);
       document.getElementById("hello").innerHTML = variabel;
+      console.log(variabel);
+      document.createElement("ul");
     }
   };
   xhttp.open("GET", "http://wildboy.uib.no/~tpe056/folk/104857.json");
