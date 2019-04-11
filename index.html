@@ -20,6 +20,19 @@
     </ul>
   </div>
 
+    <div class = "navigation">
+      <form action="/page2" method="get">
+
+      </form>
+      <form action="/page2" method="get"></form>
+      <button> Introduksjon </button>
+      <button onclick="window.location.href='/URL_befolkning' " type = "submit"> Oversikt </button>
+      <button type = "submit"> Detaljer </button>
+
+
+      <button type = "submit"> Sammenlikning </button>
+
+    </div>
 <!-- Hovedinnholdet -->
     <!-- Introduksjon -->
     <div class = "introduksjon">
@@ -41,13 +54,19 @@
 
 
 
+
 <!-- Bunntekst -->
     </div>
     <hr>
     <div id = "detaljer">
+      <form id="form">
+        Kommunenummer:
+        <input type="text" id="nummer" placeholder="Skriv inn kommunenummer">
+        <button onclick="detaljer();">Send</button>
     </div>
     <div id = "bunntekst">
     </div>
     <p align = "center"> Oppgavebesvarelse INFO134 </p>
+    <p> Oppgavebesvarelse INFO134 </p>
   </body>
 </html>
