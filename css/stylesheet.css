@@ -6,18 +6,20 @@ body{
   border: 10%;
 }
 
+#nav{
+  text-align: center;
+}
 
 #nav > li{
-  text-align: center;
   margin-right: 30px;
   display: inline-block;
   justify-content: left;
   flex-direction: row;
+  text-decoration: underline
 }
 
 #nav > li:hover{
   cursor: pointer;
-  text-decoration: underline;
 }
 
 
