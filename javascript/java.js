@@ -23,6 +23,9 @@ function befolkning(){
 
     }
 
+    let befolkning = new Befolkning(URL_befolkning, ){
+      befolkning.load()
+    }
   }
 
 
@@ -44,8 +47,4 @@ function utdanning(URL_utdanning){
 }
 
 
-}
-
-let befolkning = new Befolkning(URL_befolkning, ){
-  befolkning.load()
 }
