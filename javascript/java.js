@@ -50,6 +50,6 @@ function befolkning(){
 
 }
 
-let befolkning = new Befolkning(URL_befolking, ){
+let befolkning = new Befolkning(URL_befolkning, ){
   befolkning.load()
 }
