@@ -10,7 +10,7 @@ function parset_tekst(url, objekt) {
     if (this.readyState == 4 && this.status == 200) {
       var variabel = JSON.parse(this.responseText);
       objekt.data = variabel
-      console.lot(objekt.data);
+      console.log(objekt.data);
     }
   };
   xhttp.open("GET", "http://wildboy.uib.no/~tpe056/folk/104857.json");
