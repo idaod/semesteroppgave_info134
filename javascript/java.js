@@ -18,7 +18,9 @@ function parset_tekst(url, objekt) {
 }
 
 
-function befolkning(){
+/*
+
+  function befolkning(){
   this.getNames = function(){
 
     }
@@ -29,7 +31,7 @@ function befolkning(){
   this.load = function(){
     parset_tekst(url, this);
   }
-}
+
 
 function sysselsetting(URL_sysselsetting){
   this.load = function(){
@@ -43,8 +45,8 @@ function utdanning(URL_utdanning){
   }
 }
 
+*/
 
-}
 
 let befolkning = new Befolkning(URL_befolkning, ){
   befolkning.load()
