@@ -18,9 +18,9 @@ function parset_tekst(url, objekt) {
 }
 
 
-function befolkning(URL_befolkning){
+function befolkning(){
   this.getNames = function(){
-    
+
     }
 
   }
