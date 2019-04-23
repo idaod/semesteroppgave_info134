@@ -18,9 +18,9 @@ function parset_tekst(url, objekt) {
 }
 
 
-function befolkning(URL_befolkning){
+function befolkning(){
   this.getNames = function(){
-    
+
     }
 
   }
@@ -43,4 +43,13 @@ function utdanning(URL_utdanning){
   this.load = function(){
     oversikt(url, this);
   }
+}
+
+
+function befolkning(){
+
+}
+
+let befolkning = new Befolkning(){
+  befolkning.load()
 }
