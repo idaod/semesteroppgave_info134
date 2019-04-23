@@ -17,6 +17,7 @@ body{
 
 #nav > li:hover{
   cursor: pointer;
+  text-decoration: underline;
 }
 
 
@@ -26,7 +27,6 @@ men bare nøyaktig ett av dem skal til
 enhver tid være synlig. De tre andre skal skjules ved hjelp av CSS
  og å tilskrive klasser til elementene
 
-.navigation, button {
-
+.navigation > button {
   visibility: hidden;
 }*/
