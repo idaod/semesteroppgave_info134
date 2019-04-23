@@ -25,6 +25,9 @@ parset_tekst();
 
     }
 
+    let befolkning = new Befolkning(URL_befolkning, ){
+      befolkning.load()
+    }
   }
 
 
@@ -47,6 +50,9 @@ function utdanning(URL_utdanning){
 
 */
 
+<<<<<<< HEAD
 let befolkning = new Befolkning(URL_befolkning,this){
   befolkning.load()
+=======
+>>>>>>> aaf0655335ac1b20ddfeb9d4b62ce46c83d810a0
 }
