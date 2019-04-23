@@ -25,8 +25,6 @@ function befolkning(){
 
   }
 
-befolkning();
-
 
   this.load = function(){
     parset_tekst(url, this);
@@ -45,8 +43,6 @@ function utdanning(URL_utdanning){
   }
 }
 
-
-function befolkning(){
 
 }
 
