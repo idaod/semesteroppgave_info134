@@ -49,6 +49,7 @@ function utdanning(URL_utdanning){
 function befolkning(){
 
 }
+
 let befolkning = new Befolkning(){
   befolkning.load()
 }
