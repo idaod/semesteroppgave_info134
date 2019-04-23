@@ -44,3 +44,11 @@ function utdanning(URL_utdanning){
     oversikt(url, this);
   }
 }
+
+
+function befolkning(){
+
+}
+let befolkning = new Befolkning(){
+  befolkning.load()
+}
