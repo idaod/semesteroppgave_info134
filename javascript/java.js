@@ -31,7 +31,7 @@ function parset_tekst(url, objekt) {
 function Befolkning(url){
   this.getNames = getNames
   this.getIDs = getIDs
-  //this.getInfo = getInfo
+  this.getInfo = getInfo
   this.load = function(){
     parset_tekst(url,this)
   }
@@ -63,6 +63,19 @@ function getIDs(){
   return list;
 }
 
+function getInfo(){
+  var output = "<ul>";
+  var menn;
+  var list = [];
+  for (var menn of this.getIDs()){
+    list.push(this.data["elementer"][kommune]["kommunenummer"][menn]);
+    output += "<li>" + menn + "</li>"
+ output += "</ul>";
+
+    document.getElementById("oversikt").innerHTML = output;
+  }
+  return list;
+}
 
 //befolkning.getNames();
 
