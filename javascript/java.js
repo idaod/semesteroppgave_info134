@@ -17,7 +17,15 @@ function parset_tekst(url, objekt) {
   xhttp.send();
 }
 
-parset_tekst();
+parset_tekst(URL_utdanning);
+
+
+let befolkning = new Befolkning(URL_befolkning,this){
+  befolkning.load()
+}
+
+
+
 /*
 
   function befolkning(){
@@ -46,7 +54,3 @@ function utdanning(URL_utdanning){
 }
 
 */
-
-let befolkning = new Befolkning(URL_befolkning,this){
-  befolkning.load()
-}
