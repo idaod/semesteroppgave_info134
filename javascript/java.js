@@ -14,7 +14,6 @@ const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 
 function test(){
-
   for (let nr of befolkning.getIDs()){
     for(let elm of befolkning.getInfo()){
       innbygger=elm["Menn"]["2018"]+elm["Kvinner"]["2018"]
