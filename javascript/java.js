@@ -9,19 +9,28 @@ function parset_tekst(url, objekt) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var variabel = JSON.parse(this.responseText);
-      objekt.data = variabel
       console.log(variabel);
+      objekt.data = variabel
     }
   };
-  xhttp.open("GET", "http://wildboy.uib.no/~tpe056/folk/104857.json");
+  xhttp.open("GET", url);
   xhttp.send();
 }
 
 parset_tekst(URL_utdanning);
 
 
-let befolkning = new Befolkning(URL_befolkning,this){
-  befolkning.load()
+
+
+let befolkning = new Befolkning(URL_befolkning,this)
+
+befolkning.load()
+
+function Befolkning(url){
+  this.getNames = getNames
+  this.getIDs = getIDs
+  this.getInfo = getInfo
+  this.load = parset_tekst
 }
 
 
