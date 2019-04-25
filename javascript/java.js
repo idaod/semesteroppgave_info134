@@ -4,8 +4,9 @@ let utdanning;
 
 window.onload = function(){
    befolkning = new Befolkning(URL_befolkning);
-   sysselsetting = new Sysselsetting(URL_sysselsetting);
-   utdanning = new Utdanning(URL_utdanning);
+   befolkning.load()
+   //sysselsetting = new Sysselsetting(URL_sysselsetting);
+   //utdanning = new Utdanning(URL_utdanning);
 }
 
 const URL_befolkning = "http://wildboy.uib.no/~tpe056/folk/104857.json";
@@ -18,8 +19,8 @@ function parset_tekst(url, objekt) {
   xhttp.onreadystatechange = function() {
     console.log(this.status)
     if (this.readyState == 4 && this.status == 200) {
-      var variabel = JSON.parse(this.responseText);
-      objekt.data = variabel
+      var data = JSON.parse(this.responseText);
+      objekt.data = data
     }
   };
   xhttp.open("GET", url);
@@ -28,7 +29,7 @@ function parset_tekst(url, objekt) {
 
 
 function Befolkning(url){
-  //this.getNames = getNames
+  this.getNames = getNames
   //this.getIDs = getIDs
   //this.getInfo = getInfo
   this.load = function(){
@@ -36,8 +37,17 @@ function Befolkning(url){
   }
 }
 
-//function getNames(){
-//  this.data???
+function getNames(){
+  var output = "<ul>";
+  var name;
+  for (var name in this.data){
+     console.log(name[1]);
+  }
+
+}
+
+
+befolkning.getNames();
 
 
 //function Sysselsetting(url){
