@@ -40,21 +40,27 @@ function Befolkning(url){
 function getNames(){
   var output = "<ul>";
   var name;
-  for (var name in this.data.elementer){
+  var list = [];
+  for (var name in this.data["elementer"]){
      output += "<li>" + name + "</li>"
   output += "</ul>";
   document.getElementById("oversikt").innerHTML = output;
+  list.push(name);
   }
+  return list;
 }
 
 function getIDs(){
   var output = "<ul>";
-  var id;
-  for (var id in this.data.elementer.Halden){
-     output += "<li>" + id + "</li>"
+  var kommune;
+  var list = [];
+  for (var kommune of this.getNames()){
+      list.push(this.data['elementer'][kommune]['kommunenummer']);
+     output += "<li>" + kommune + "</li>"
   output += "</ul>";
   document.getElementById("oversikt").innerHTML = output;
   }
+  return list;
 }
 
 
