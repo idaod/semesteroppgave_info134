@@ -58,7 +58,7 @@ function getIDs(){
       list.push(this.data['elementer'][kommune]['kommunenummer']);
      output += "<li>" + kommune + "</li>"
   output += "</ul>";
-  document.getElementById("oversikt").innerHTML = output;
+  document.getElementById("oversikt").innerHTML = list;
   }
   return list;
 }
