@@ -30,7 +30,7 @@ function parset_tekst(url, objekt) {
 
 function Befolkning(url){
   this.getNames = getNames
-  //this.getIDs = getIDs
+  this.getIDs = getIDs
   //this.getInfo = getInfo
   this.load = function(){
     parset_tekst(url,this)
@@ -40,10 +40,21 @@ function Befolkning(url){
 function getNames(){
   var output = "<ul>";
   var name;
-  for (var name in this.data){
-     console.log(name);
+  for (var name in this.data.elementer){
+     output += "<li>" + name + "</li>"
+  output += "</ul>";
+  document.getElementById("oversikt").innerHTML = output;
   }
+}
 
+function getIDs(){
+  var output = "<ul>";
+  var id;
+  for (var id in this.data.elementer.Halden){
+     output += "<li>" + id + "</li>"
+  output += "</ul>";
+  document.getElementById("oversikt").innerHTML = output;
+  }
 }
 
 
