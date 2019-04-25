@@ -41,13 +41,13 @@ function getNames(){
   var output = "<ul>";
   var name;
   for (var name in this.data){
-     console.log(name[1]);
+     console.log(name);
   }
 
 }
 
 
-befolkning.getNames();
+//befolkning.getNames();
 
 
 //function Sysselsetting(url){
