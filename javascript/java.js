@@ -40,42 +40,9 @@ function Befolkning(url){
 //  this.data???
 
 
-function Sysselsetting(url){
+//function Sysselsetting(url){
   //this.getNames = getNames
   //this.getIDs = getIDs
   //this.getInfo = getInfo
-  this.load = parset_tekst
-
-}
-
-
-
-
-/*
-
-  function befolkning(){
-  this.getNames = function(){
-
-    }
-
-  }
-
-
-  this.load = function(){
-    parset_tekst(url, this);
-  }
-
-
-function sysselsetting(URL_sysselsetting){
-  this.load = function(){
-    oversikt(url, this);
-  }
-}
-
-function utdanning(URL_utdanning){
-  this.load = function(){
-    oversikt(url, this);
-  }
-}
-
-*/
+  //this.load = parset_tekst
+//}
