@@ -55,7 +55,7 @@ function getIDs(){
   var kommune;
   var list = [];
   for (var kommune of this.getNames()){
-      list.push(this.data['elementer'][kommune]['kommunenummer']);
+      list.push(this.data["elementer"][kommune]["kommunenummer"]);
      output += "<li>" + kommune + "</li>"
   output += "</ul>";
   document.getElementById("oversikt").innerHTML = list;
