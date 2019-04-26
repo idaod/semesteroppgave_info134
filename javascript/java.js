@@ -33,9 +33,9 @@ function oversikt(){
       innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
       console.log(innbygger)
   }
-  console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNames(nr)[0] + " Befolkning: " + befolkning.getInnbygger(nummer,"2018"))
+  console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNames(nummer)[0] + " Befolkning: " + befolkning.getTotal(nummer,"2018"))
   var dokument = document.createElement("li");
-  var oversikt = document.createTextNode("Kommunenummer: " + nummer + ", " + " Kommune: "+befolkning.getNames(nummer)[0] + ", " + "Befolkning: " + befolkning.getInnbygger(nummer,"2018"))
+  var oversikt = document.createTextNode("Kommunenummer: " + nummer + ", " + " Kommune: "+befolkning.getNames(nummer)[0] + ", " + "Befolkning: " + befolkning.getTotal(nummer,"2018"))
   dokument.appendChild(oversikt);
   document.body.appendChild(dokument);
   }
@@ -47,7 +47,7 @@ function getNames(id){
   var list = [];
   for (var name in this.data["elementer"]){
     var kommune_objekt = this.data["elementer"][name];
-    var kommunenummer = kommuneobjekt["kommunenummer"];
+    var kommunenummer = kommune_objekt["kommunenummer"];
     if(id==kommunenummer){
       list.push(name);
     }
@@ -56,7 +56,30 @@ function getNames(id){
   return list;
 }
 
-function getInnbygger(id, år){
+function getIDs(){
+
+     var list = [];
+     for (var x in this.data["elementer"]){
+       var kommune = this.data["elementer"][x]
+      let nr = kommune["kommunenummer"];
+      list.push(nr)
+}
+return list
+}
+
+function getInfo(id){
+    let l=[]
+    for(let kommune in this.data.elementer){
+      let kommune_obj=this.data.elementer[kommune]
+      let nr=kommune_obj["kommunenummer"]
+      if(id==nr){
+      l.push(kommune_obj)
+      }
+  return l
+  }
+}
+
+function getTotal(id, år){
     let l=[]
     for(let kommune in this.data.elementer){
       let kommune_obj=this.data.elementer[kommune]
@@ -70,66 +93,13 @@ function getInnbygger(id, år){
     return l
   };
 
-  function getInfo(id){
-      let l=[]
-      for(let kommune in this.data.elementer){
-        let kommune_obj=this.data.elementer[kommune]
-        let nr=kommune_obj["kommunenummer"]
-        if(id==nr){
-        l.push(kommune_obj)
-
-        }
-
-    return l
-    }
-  }
-
-
-
-  function getIDs(){
-       var kommune;
-       var list = [];
-       for (var x of this.data["elementer"][kommune]){
-        let nr = kommune["kommunenummer"];
-        list.push(nr)
-}
-return list
-}
 
 
 
 
-//this.getIDs=function(){
-  //  let l=[]
-  //  for(let x in this.data.elementer){
-  //  let kommune=this.data.elementer[x]
-    //  let nr=kommune["kommunenummer"]
-    //  l.push(nr);
-  //  }
-  //  return l
-  //}
 
 
 
-  //function getNAME(id){
-  //  let l=[]
-    //for (let kommune in this.data.elementer){
-    //  let kommune_objekt = this.data.elementer[kommune]
-      //let kommunenummer = kommune_objekt["kommunenummer"]
-
-    //  if(id===kommunenummer){
-      //  l.push(kommune)
-    //  }
-    //}
-    //return l
-  //}
-
-
-   //}
-   //return list;
- //}
-
-//befolkning.getNames();
 
 
 //function Sysselsetting(url){
