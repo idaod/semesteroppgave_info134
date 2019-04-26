@@ -14,20 +14,18 @@ const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 
 function test(){
-  for (let nr of befolkning.getIDs()){
-    for(let elm of befolkning.getInfo()){
-      innbygger=elm["Menn"]["2018"]+elm["Kvinner"]["2018"]
+  for (let nummer of befolkning.getIDs()){
+    for(let elementer of befolkning.getInfo()){
+      innbygger=elementer["Menn"]["2018"]+elementer["Kvinner"]["2018"]
       console.log(innbygger)
   }
-  console.log("Kommunenummer: "+nr +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nr,"2018"))
-  var h = document.createElement("li");
+  console.log("Kommunenummer: "+nummer +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nr,"2018"))
+  var dokument = document.createElement("li");
   var oversikt = document.createTextNode("Kommunenummer: "+nr +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nr,"2018"))
-  h.appendChild(oversikt);
-  document.body.appendChild(h);
+  dokument.appendChild(oversikt);
+  document.body.appendChild(dokument);
   }
 }
-
-
 
 
 function parset_tekst(url, objekt) {
@@ -57,60 +55,57 @@ function Befolkning(url){
 
 
 function getNAME(id){
-  let l=[]
+  let liste=[]
   for (let kommune in this.data.elementer){
-    let kommune_obj=this.data.elementer[kommune]
+    let kommune_objekt=this.data.elementer[kommune]
 
 
-    let kommunenr=kommune_obj["kommunenummer"]
+    let kommunenr=kommune_objekt["kommunenummer"]
     if(id===kommunenr){
       l.push(kommune)
     }
   }
-  return l
+  return liste
 }
 
 
 
 this.getInnbygger=function(id, år){
-    let l=[]
+    let liste=[]
     for(let kommune in this.data.elementer){
-      let kommune_obj=this.data.elementer[kommune]
+      let kommune_objekt=this.data.elementer[kommune]
       //skal returnere x egentlig
-      let nr=kommune_obj["kommunenummer"]
-      if (id===nr){
-        let befolkning=(kommune_obj["Menn"][år] + kommune_obj["Kvinner"][år])
+      let nummer=kommune_objekt["kommunenummer"]
+      if (id===nummer){
+        let befolkning=(kommune_objekt["Menn"][år] + kommune_objekt["Kvinner"][år])
         l.push(befolkning)
       }
     }
-    return l
+    return liste
   };
-
-
-
 
 
 function getNames(){
   var output = "<ul>";
   var name;
-  var list = [];
+  var liste = [];
   for (var name in this.data["elementer"]){
      output += "<li>" + name + "</li>"
   output += "</ul>";
   document.getElementById("oversikt").innerHTML = output;
-  list.push(name);
+  liste.push(name);
   }
-  return list;
+  return liste;
 }
 
 this.getIDs=function(){
-    let l=[]
+    let liste=[]
     for(let x in this.data.elementer){
       let kommune=this.data.elementer[x]
-      let nr=kommune["kommunenummer"]
-      l.push(nr);
+      let nummer=kommune["kommunenummer"]
+      liste.push(nummer);
     }
-    return l
+    return liste
   }
 
 // function getIDs(){
@@ -127,12 +122,12 @@ this.getIDs=function(){
 // }
 
 function getInfo(id){
-    let l=[]
+    let liste=[]
     for(let kommune in this.data.elementer){
-      let kommune_obj=this.data.elementer[kommune]
-      let nr=kommune_obj["kommunenummer"]
-      if(nr===id){
-        l.push(kommune_obj)
+      let kommune_objekt=this.data.elementer[kommune]
+      let nummer=kommune_objekt["kommunenummer"]
+      if(nummer===id){
+        l.push(kommune_objekt)
       }
   }
   return l
