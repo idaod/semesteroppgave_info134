@@ -8,11 +8,11 @@ window.onload = function(){
    //sysselsetting = new Sysselsetting(URL_sysselsetting);
    //utdanning = new Utdanning(URL_utdanning);
 }
-
 const URL_befolkning = "http://wildboy.uib.no/~tpe056/folk/104857.json";
 const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 
+<<<<<<< HEAD
 function test(){
   for (let nr of befolkning.getIDs()){
     for(let elm of befolkning.getInfo()){
@@ -27,14 +27,16 @@ function test(){
   }
 }
 
+=======
+>>>>>>> 52e6ebe480e0df9b0b142c36376f7d4066e76dca
 
 function parset_tekst(url, objekt) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    console.log(this.status)
+    console.log(this.status);
     if (this.readyState == 4 && this.status == 200) {
       var data = JSON.parse(this.responseText);
-      objekt.data = data
+      objekt.data = data;
     }
   };
   xhttp.open("GET", url);
@@ -42,16 +44,74 @@ function parset_tekst(url, objekt) {
 }
 
 
+<<<<<<< HEAD
 function getNames(){
   var name;
   var list = [];
   for (name in this.data["elementer"][kommune]){
 
   list.push(name);
+=======
+function oversikt(){
+  for (var nummer of befolkning.getIDs()){
+    for(var element of befolkning.getInfo()){
+      innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
+      console.log(innbygger)
+  }
+  console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNames(nummer)[0] + " Befolkning: " + befolkning.getTotal(nummer,"2018"))
+  var dokument = document.createElement("li");
+  var oversikt = document.createTextNode("Kommunenummer: " + nummer + ", " + " Kommune: "+befolkning.getNames(nummer)[0] + ", " + "Befolkning: " + befolkning.getTotal(nummer,"2018"))
+  dokument.appendChild(oversikt);
+  document.body.appendChild(dokument);
+  }
+}
+
+function detaljer(){
+  var nummer = document.getElementById("nummer").value;
+  befolkning.getInfo(nummer);
+
+}
+
+
+function getNames(id){
+  var name;
+  var list = [];
+  for (var name in this.data["elementer"]){
+    var kommune_objekt = this.data["elementer"][name];
+    var kommunenummer = kommune_objekt["kommunenummer"];
+    if(id==kommunenummer){
+      list.push(name);
+    }
+
   }
   return list;
 }
 
+function getIDs(){
+
+     var list = [];
+     for (var x in this.data["elementer"]){
+       var kommune = this.data["elementer"][x]
+      let nr = kommune["kommunenummer"];
+      list.push(nr)
+}
+return list
+}
+
+function getInfo(id){
+    let l=[]
+    for(let kommune in this.data.elementer){
+      let kommune_objekt = this.data.elementer[kommune]
+      let nr=kommune_objekt["kommunenummer"]
+      if(id==nr){
+      l.push(kommune_objekt)
+      }
+  return l
+>>>>>>> 52e6ebe480e0df9b0b142c36376f7d4066e76dca
+  }
+}
+
+<<<<<<< HEAD
 function getIDs(){
   var kommune;
   var list = [];
@@ -64,6 +124,9 @@ function getIDs(){
 
 
 this.getInnbygger=function(id, år){
+=======
+function getTotal(id, år){
+>>>>>>> 52e6ebe480e0df9b0b142c36376f7d4066e76dca
     let l=[]
     for(let kommune in this.data.elementer){
       let kommune_obj=this.data.elementer[kommune]
@@ -77,20 +140,10 @@ this.getInnbygger=function(id, år){
     return l
   };
 
-  function getInfo(id){
-      let l=[]
-      for(let kommune in this.data.elementer){
-        let kommune_obj=this.data.elementer[kommune]
-        let nr=kommune_obj["kommunenummer"]
-        if(nr===id){
-          l.push(kommune_obj)
-        }
-    }
-    return l
-  }
 
 
 
+<<<<<<< HEAD
   //function getNAME(id){
     //let l=[]
     //for (let kommune in this.data.elementer){
@@ -114,10 +167,14 @@ this.getInnbygger=function(id, år){
     //}
     //return l
   //}
+=======
+
+
+>>>>>>> 52e6ebe480e0df9b0b142c36376f7d4066e76dca
 
 
 
-//befolkning.getNames();
+
 
 
 //function Sysselsetting(url){
