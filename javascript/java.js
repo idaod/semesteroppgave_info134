@@ -16,10 +16,10 @@ const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 function parset_tekst(url, objekt) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    console.log(this.status)
+    console.log(this.status);
     if (this.readyState == 4 && this.status == 200) {
       var data = JSON.parse(this.responseText);
-      objekt.data = data
+      objekt.data = data;
     }
   };
   xhttp.open("GET", url);
@@ -33,16 +33,16 @@ function oversikt(){
       innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
       console.log(innbygger)
   }
-  console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNAME(nr)[0] + " Befolkning: " + befolkning.getInnbygger(nummer,"2018"))
+  console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNames(nr)[0] + " Befolkning: " + befolkning.getInnbygger(nummer,"2018"))
   var dokument = document.createElement("li");
-  var oversikt = document.createTextNode("Kommunenummer: " + nummer + ", " + " Kommune: "+befolkning.getNAME(nummer)[0] + ", " + "Befolkning: " + befolkning.getInnbygger(nummer,"2018"))
+  var oversikt = document.createTextNode("Kommunenummer: " + nummer + ", " + " Kommune: "+befolkning.getNames(nummer)[0] + ", " + "Befolkning: " + befolkning.getInnbygger(nummer,"2018"))
   dokument.appendChild(oversikt);
   document.body.appendChild(dokument);
   }
 }
 
 
-function getNames(){
+function getNames(id){
   var name;
   var list = [];
   for (var name in this.data["elementer"]){
@@ -70,15 +70,20 @@ function getInnbygger(id, år){
     return l
   };
 
-  function getInfo(){
+  function getInfo(id){
       let l=[]
       for(let kommune in this.data.elementer){
         let kommune_obj=this.data.elementer[kommune]
         let nr=kommune_obj["kommunenummer"]
-          l.push(kommune_obj)
+        if(id==nr){
+        l.push(kommune_obj)
+
         }
-    }
+
     return l
+    }
+  }
+
 
 
   function getIDs(){
@@ -87,6 +92,11 @@ function getInnbygger(id, år){
        for (var x of this.data["elementer"][kommune]){
         let nr = kommune["kommunenummer"];
         list.push(nr)
+}
+return list
+}
+
+
 
 
 //this.getIDs=function(){
