@@ -54,7 +54,6 @@ function getNames(){
   return list;
 }
 
-
 function getInnbygger(id, år){
     let l=[]
     for(let kommune in this.data.elementer){
@@ -79,15 +78,24 @@ function getInnbygger(id, år){
     }
     return l
 
-this.getIDs=function(){
-    let l=[]
-    for(let x in this.data.elementer){
-    let kommune=this.data.elementer[x]
-      let nr=kommune["kommunenummer"]
-      l.push(nr);
-    }
-    return l
-  }
+
+  function getIDs(){
+       var kommune;
+       var list = [];
+       for (var x of this.data["elementer"][kommune]){
+        let nr = kommune["kommunenummer"];
+        list.push(nr)
+
+
+//this.getIDs=function(){
+  //  let l=[]
+  //  for(let x in this.data.elementer){
+  //  let kommune=this.data.elementer[x]
+    //  let nr=kommune["kommunenummer"]
+    //  l.push(nr);
+  //  }
+  //  return l
+  //}
 
 
 
@@ -103,15 +111,6 @@ this.getIDs=function(){
     //}
     //return l
   //}
-
-
-
-//function getIDs(){
-   //var kommune;
-   //var list = [];
-   //for (var x of this.data["elementer"]){
-      //let nr = kommune["kommunenummer"];
-      //list.push(this.data["elementer"][kommune]
 
 
    //}
