@@ -27,6 +27,7 @@ function test(){
   }
 }
 
+//hello
 
 function parset_tekst(url, objekt) {
   var xhttp = new XMLHttpRequest();
