@@ -27,6 +27,7 @@ function test(){
   }
 }
 
+<<<<<<< HEAD
 //hello
 
 function parset_tekst(url, objekt) {
@@ -322,6 +323,8 @@ function test(){
   }
 }
 
+=======
+>>>>>>> 46d44ef106e4b3a7d86946a2e2e2b046bd2ec391
 
 function parset_tekst(url, objekt) {
   var xhttp = new XMLHttpRequest();
