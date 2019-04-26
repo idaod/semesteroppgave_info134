@@ -14,16 +14,16 @@ const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 
 function oversikt(){
-  for (let nummer of befolkning.getIDs()){
-    for(let element of befolkning.getInfo()){
-      innbygger=element["Menn"]["2018"]+element["Kvinner"]["2018"]
+  for (var nummer of befolkning.getIDs()){
+    for(var element of befolkning.getInfo()){
+      innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
       console.log(innbygger)
   }
-  console.log("Kommunenummer: "+nummer +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nummer,"2018"))
-  var h = document.createElement("li");
-  var oversikt = document.createTextNode("Kommunenummer: "+nummer + ", " + " Kommune: "+befolkning.getNAME(nummer)[0]+ ", " + "Befolkning: "+befolkning.getInnbygger(nummer,"2018"))
-  h.appendChild(oversikt);
-  document.body.appendChild(h);
+  console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNAME(nr)[0] + " Befolkning: " + befolkning.getInnbygger(nummer,"2018"))
+  var dokument = document.createElement("li");
+  var oversikt = document.createTextNode("Kommunenummer: " + nummer + ", " + " Kommune: "+befolkning.getNAME(nummer)[0] + ", " + "Befolkning: " + befolkning.getInnbygger(nummer,"2018"))
+  dokument.appendChild(oversikt);
+  document.body.appendChild(dokument);
   }
 }
 
@@ -41,16 +41,6 @@ function parset_tekst(url, objekt) {
 }
 
 
-function Befolkning(url){
-  this.getNames = getNames
-  this.getIDs = getIDs
-  this.getInfo = getInfo
-  this.getNAME=getNAME
-  this.getInnbygger=getInnbygger
-  this.load = function(){
-    parset_tekst(url,this)
-  }
-}
 
 
 function getNAME(id){
@@ -67,12 +57,12 @@ function getNAME(id){
 }
 
 function getNames(){
-
   var name;
   var list = [];
-  for (var name in this.data["elementer"][kommune]){
+  for (var name in this.data["elementer"]){
+    var kommune_objekt = this.data["elementer"][name];
+    var kommunenummer = kommuneobjekt["kommunenummer"];
 
-  document.getElementById("oversikt").innerHTML = output;
   list.push(name);
   }
   return list;
@@ -113,12 +103,12 @@ function getInnbygger(id, år){
     //return l
   //}
 
-
 function getIDs(){
    var kommune;
    var list = [];
    for (var x of this.data["elementer"]){
-       list.push(this.data["elementer"][kommune]["kommunenummer"]);
+       list.push(this.data["elementer"][kommune]
+       ["kommunenummer"]);
 
    }
    return list;
