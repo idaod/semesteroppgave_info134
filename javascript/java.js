@@ -48,8 +48,10 @@ function getNames(){
   for (var name in this.data["elementer"]){
     var kommune_objekt = this.data["elementer"][name];
     var kommunenummer = kommuneobjekt["kommunenummer"];
+    if(id==kommunenummer){
+      list.push(name);
+    }
 
-  list.push(name);
   }
   return list;
 }
