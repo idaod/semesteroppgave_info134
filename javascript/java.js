@@ -21,7 +21,7 @@ function test(){
   }
   console.log("Kommunenummer: "+nummer +" Kommune: "+befolkning.getNAME(nummer)[0]+" Befolkning: "+befolkning.getInnbygger(nummer,"2018"))
   var dokument = document.createElement("li");
-  var oversikt = document.createTextNode("Kommunenummer: "+nummer +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nummer,"2018"))
+  var oversikt = document.createTextNode("Kommunenummer: "+nummer +" Kommune: "+befolkning.getNAME(nummer)[0]+" Befolkning: "+befolkning.getInnbygger(nummer,"2018"))
   dokument.appendChild(oversikt);
   document.body.appendChild(dokument);
   }
@@ -78,7 +78,7 @@ this.getInnbygger=function(id, år){
       let nummer=kommune_objekt["kommunenummer"]
       if (id===nummer){
         let befolkning=(kommune_objekt["Menn"][år] + kommune_objekt["Kvinner"][år])
-        l.push(befolkning)
+        liste.push(befolkning)
       }
     }
     return liste
@@ -127,10 +127,10 @@ function getInfo(id){
       let kommune_objekt=this.data.elementer[kommune]
       let nummer=kommune_objekt["kommunenummer"]
       if(nummer===id){
-        l.push(kommune_objekt)
+        liste.push(kommune_objekt)
       }
   }
-  return l
+  return liste
 }
 
 //befolkning.getNames();
