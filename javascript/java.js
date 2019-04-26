@@ -41,6 +41,12 @@ function oversikt(){
   }
 }
 
+function detaljer(){
+  var nummer = document.getElementById("nummer").value;
+  befolkning.getInfo(nummer);
+
+}
+
 
 function getNames(id){
   var name;
@@ -70,10 +76,10 @@ return list
 function getInfo(id){
     let l=[]
     for(let kommune in this.data.elementer){
-      let kommune_obj=this.data.elementer[kommune]
-      let nr=kommune_obj["kommunenummer"]
+      let kommune_objekt = this.data.elementer[kommune]
+      let nr=kommune_objekt["kommunenummer"]
       if(id==nr){
-      l.push(kommune_obj)
+      l.push(kommune_objekt)
       }
   return l
   }
@@ -92,6 +98,8 @@ function getTotal(id, år){
     }
     return l
   };
+
+
 
 
 
