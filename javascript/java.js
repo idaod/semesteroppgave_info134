@@ -19,9 +19,9 @@ function test(){
       innbygger=elm["Menn"]["2018"]+elm["Kvinner"]["2018"]
       console.log(innbygger)
   }
-  console.log("Kommunenummer: "+nr +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nr,"2018"))
+  console.log("Kommunenummer: "+nr +" Kommune: "+befolkning.getNames(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nr,"2018"))
   var h = document.createElement("li");
-  var oversikt = document.createTextNode("Kommunenummer: "+nr + ", " + " Kommune: "+befolkning.getNAME(nr)[0]+ ", " + "Befolkning: "+befolkning.getInnbygger(nr,"2018"))
+  var oversikt = document.createTextNode("Kommunenummer: "+nr + ", " + " Kommune: "+befolkning.getNames(nr)[0]+ ", " + "Befolkning: "+befolkning.getInnbygger(nr,"2018"))
   h.appendChild(oversikt);
   document.body.appendChild(h);
   }
@@ -42,45 +42,26 @@ function parset_tekst(url, objekt) {
 }
 
 
-function Befolkning(url){
-  this.getNames = getNames
-  this.getIDs = getIDs
-  this.getInfo = getInfo
-  this.getNAME=getNAME
-  this.getInnbygger=getInnbygger
-  this.load = function(){
-    parset_tekst(url,this)
-  }
-}
-
-
-function getNAME(id){
-  let l=[]
-  for (let kommune in this.data.elementer){
-    let kommune_obj=this.data.elementer[kommune]
-
-
-    let kommunenr=kommune_obj["kommunenummer"]
-    if(id===kommunenr){
-      l.push(kommune)
-    }
-  }
-  return l
-}
-
 function getNames(){
-  var output = "<ul>";
   var name;
   var list = [];
-  for (var name in this.data["elementer"][kommune]){
+  for (name in this.data["elementer"][kommune]){
 
-     output += "<li>" + name + "</li>"
-  output += "</ul>";
-  document.getElementById("oversikt").innerHTML = output;
   list.push(name);
   }
   return list;
 }
+
+function getIDs(){
+  var kommune;
+  var list = [];
+  for (var kommune of this.data.elementer){
+    list.push(this.data["elementer"][kommune])
+    let nr=kommune["kommunenummer"];
+   }
+   return list;
+ }
+
 
 this.getInnbygger=function(id, år){
     let l=[]
@@ -110,29 +91,29 @@ this.getInnbygger=function(id, år){
 
 
 
-this.getIDs=function(){
-    let l=[]
-    for(let x in this.data.elementer){
-      let kommune=this.data.elementer[x]
-      let nr=kommune["kommunenummer"]
-      l.push(nr);
-    }
-    return l
+  //function getNAME(id){
+    //let l=[]
+    //for (let kommune in this.data.elementer){
+      //let kommune_obj=this.data.elementer[kommune]
+
+
+      //let kommunenr=kommune_obj["kommunenummer"]
+      //if(id===kommunenr){
+        //l.push(kommune)
+      //}
+    //}
+    //return l
   }
 
 
-// function getIDs(){
-//   var output = "<ul>";
-//   var kommune;
-//   var list = [];
-//   for (var kommune of this.data.elementer){
-//       list.push(this.data["elementer"][kommune]["kommunenummer"]);
-//      output += "<li>" + kommune + "</li>"
-//   output += "</ul>";
-//   document.getElementById("oversikt").innerHTML = list;
-//   }
-//   return list;
-// }
+//this.getIDs=function(){
+  //  let l=[]
+  //  for(let x in this.data.elementer){
+      //let kommune=this.data.elementer[x]
+      //l.push(nr);
+    //}
+    //return l
+  //}
 
 
 
