@@ -21,7 +21,7 @@ function test(){
   }
   console.log("Kommunenummer: "+nr +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nr,"2018"))
   var h = document.createElement("li");
-  var oversikt = document.createTextNode("Kommunenummer: "+nr +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nr,"2018"))
+  var oversikt = document.createTextNode("Kommunenummer: "+nr + ", " + " Kommune: "+befolkning.getNAME(nr)[0]+ ", " + "Befolkning: "+befolkning.getInnbygger(nr,"2018"))
   h.appendChild(oversikt);
   document.body.appendChild(h);
   }
