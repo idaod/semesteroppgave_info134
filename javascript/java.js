@@ -19,9 +19,9 @@ function test(){
       innbygger=elementer["Menn"]["2018"]+elementer["Kvinner"]["2018"]
       console.log(innbygger)
   }
-  console.log("Kommunenummer: "+nummer +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nr,"2018"))
+  console.log("Kommunenummer: "+nummer +" Kommune: "+befolkning.getNAME(nummer)[0]+" Befolkning: "+befolkning.getInnbygger(nummer,"2018"))
   var dokument = document.createElement("li");
-  var oversikt = document.createTextNode("Kommunenummer: "+nr +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nr,"2018"))
+  var oversikt = document.createTextNode("Kommunenummer: "+nummer +" Kommune: "+befolkning.getNAME(nr)[0]+" Befolkning: "+befolkning.getInnbygger(nummer,"2018"))
   dokument.appendChild(oversikt);
   document.body.appendChild(dokument);
   }
