@@ -68,7 +68,19 @@ function getNAME(id){
   return l
 }
 
+function getNames(){
+  var output = "<ul>";
+  var name;
+  var list = [];
+  for (var name in this.data["elementer"][kommune]){
 
+     output += "<li>" + name + "</li>"
+  output += "</ul>";
+  document.getElementById("oversikt").innerHTML = output;
+  list.push(name);
+  }
+  return list;
+}
 
 this.getInnbygger=function(id, år){
     let l=[]
@@ -84,22 +96,19 @@ this.getInnbygger=function(id, år){
     return l
   };
 
-
-
-
-
-function getNames(){
-  var output = "<ul>";
-  var name;
-  var list = [];
-  for (var name in this.data["elementer"]){
-     output += "<li>" + name + "</li>"
-  output += "</ul>";
-  document.getElementById("oversikt").innerHTML = output;
-  list.push(name);
+  function getInfo(id){
+      let l=[]
+      for(let kommune in this.data.elementer){
+        let kommune_obj=this.data.elementer[kommune]
+        let nr=kommune_obj["kommunenummer"]
+        if(nr===id){
+          l.push(kommune_obj)
+        }
+    }
+    return l
   }
-  return list;
-}
+
+
 
 this.getIDs=function(){
     let l=[]
@@ -110,6 +119,7 @@ this.getIDs=function(){
     }
     return l
   }
+
 
 // function getIDs(){
 //   var output = "<ul>";
@@ -124,17 +134,7 @@ this.getIDs=function(){
 //   return list;
 // }
 
-function getInfo(id){
-    let l=[]
-    for(let kommune in this.data.elementer){
-      let kommune_obj=this.data.elementer[kommune]
-      let nr=kommune_obj["kommunenummer"]
-      if(nr===id){
-        l.push(kommune_obj)
-      }
-  }
-  return l
-}
+
 
 //befolkning.getNames();
 
