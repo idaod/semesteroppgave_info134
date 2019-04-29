@@ -50,7 +50,7 @@ function getNames(){
 function getIDs(){
   var output = "<ul>";
   var id;
-  for (var id in this.data.elementer.Halden){
+  for (var id in this.data['elementer'][output]['kommunenummer']){
      output += "<li>" + id + "</li>"
   output += "</ul>";
   document.getElementById("oversikt").innerHTML = output;
@@ -59,7 +59,7 @@ function getIDs(){
 
 
 //befolkning.getNames();
-
+//befolkning.getIDs();
 
 //function Sysselsetting(url){
   //this.getNames = getNames
