@@ -110,8 +110,8 @@ return list
 function getInfo(id){
 
     let list = []
-    for(let kommune in this.data.elementer){
-      let kommune_objekt = this.data.elementer[kommune]
+    for(let kommune in this.data["elementer"]){
+      let kommune_objekt = this.data["elementer"][kommune]
       let nr=kommune_objekt["kommunenummer"]
       if(id==nr){
       list.push(kommune_objekt)
@@ -122,8 +122,8 @@ function getInfo(id){
 
 function getTotal(id, år){
     let list = []
-    for(let kommune in this.data.elementer){
-      let kommune_objekt=this.data.elementer[kommune]
+    for(let kommune in this.data["elementer"]){
+      let kommune_objekt=this.data["elementer"][kommune]
       let nr = kommune_objekt["kommunenummer"]
       if (id===nr){
         let befolkning = (kommune_objekt["Menn"][år] + kommune_objekt["Kvinner"][år])
