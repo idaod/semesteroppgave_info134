@@ -83,7 +83,7 @@ function detaljer(nr){
 
 
 function getNames(id){
-  var name;
+
   var list = [];
   for (var name in this.data["elementer"]){
     var kommune_objekt = this.data["elementer"][name];
@@ -108,28 +108,29 @@ return list
 }
 
 function getInfo(id){
-    let l = []
+
+    let list = []
     for(let kommune in this.data.elementer){
       let kommune_objekt = this.data.elementer[kommune]
       let nr=kommune_objekt["kommunenummer"]
       if(id==nr){
-      l.push(kommune_objekt)
+      list.push(kommune_objekt)
       }
-  return l
-  }
+    }
+  return list
 }
 
 function getTotal(id, år){
-    let l = []
+    let list = []
     for(let kommune in this.data.elementer){
       let kommune_objekt=this.data.elementer[kommune]
       let nr = kommune_objekt["kommunenummer"]
       if (id===nr){
         let befolkning = (kommune_objekt["Menn"][år] + kommune_objekt["Kvinner"][år])
-        l.push(befolkning)
+        list.push(befolkning)
       }
     }
-    return l
+    return list
   };
 
 
