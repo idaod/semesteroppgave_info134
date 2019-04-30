@@ -51,14 +51,6 @@ function parset_tekst(url, objekt) {
 
 
 function oversikt(){
-<<<<<<< HEAD
-=======
-
-  //introduksjon_btn.classList.add("hide-me");
-  //detaljer_btn.classList.add("hide-me");
-  //sammenligning_btn.classList.add("hide-me");
-
->>>>>>> c5fa340af189029636a8aae647aee1bfd03c7524
   for (var nummer of befolkning.getIDs()){
     element = befolkning.getInfo(nummer);
     innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
@@ -88,10 +80,7 @@ function detaljer_input(){
 }
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> c5fa340af189029636a8aae647aee1bfd03c7524
 function detaljer(nr){
   console.log(befolkning.getInfo(nr));
 
@@ -99,12 +88,7 @@ function detaljer(nr){
 
 
 
-<<<<<<< HEAD
-
-function getNames(){
-=======
 function getNames(id){
->>>>>>> c5fa340af189029636a8aae647aee1bfd03c7524
 
   var list = [];
   for (var name in this.data["elementer"]){
@@ -159,4 +143,4 @@ function getTotal(id, år){
   //of henter ut elementer, for x in y finner index
   //hvorfor får vi bare opp Halden som kommunenavn?
   //hjelp til å skjule ting
-  //når vi trykker på oversikt en gang til så kommer den to ganger 
+  //når vi trykker på oversikt en gang til så kommer den to ganger
