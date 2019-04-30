@@ -26,6 +26,10 @@ table, th, td{
   border: 1px solid black;
 }
 
+input{
+  cursor: pointer;
+
+}
 
 /*introduksjon, oversikt, detaljer og sammenlikning.
 men bare nøyaktig ett av dem skal til
@@ -35,5 +39,3 @@ enhver tid være synlig. De tre andre skal skjules ved hjelp av CSS
 .navigation > button {
   visibility: hidden;
 }*/
-
-To classer, en som er gjemt en som ikke er gjemt.
