@@ -65,11 +65,17 @@ function oversikt(){
 function detaljer_input(){
 
   var user_value = document.getElementById("nummer").value;
+  var found = false;
 
-  for(var kommunenummer in befolkning.getIDs()){
+  for(var kommunenummer of befolkning.getIDs()){
     if(kommunenummer === user_value){
       detaljer(user_value);
+      found = true;
+      break
     }
+  }
+  if(found == false){
+    console.log("Dette er feil.");
   }
 }
 
@@ -134,3 +140,4 @@ function getTotal(id, år){
 
   //Hvordan få verdien fra skjemaet?
   //Hvordan få ut den enkelte kommunen fra objektet??
+  //of henter ut elementer, for x in y finner index
