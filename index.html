@@ -36,7 +36,6 @@
       </ol>
     </div>
 
-
     <div id="oversikt" class="oversikt">
       <p> Her har du en oversikt over alle kommuner i Norge!</p>
     </div>
@@ -44,6 +43,15 @@
     <div id="detaljer" class="detaljer">
       <form align="center" id="form">
         <p>Skriv inn et kommunenummer for info om valgt kommune.</p>
+        <input type="text" id="nummer" placeholder="Kommunenummer">
+        <button onclick="detaljer_input();">Send</button>
+    </div>
+
+    <div id="sammenligning" class="sammenligning">
+      <form align="center" id="form">
+        <p>Skriv inn to kommunenummer for å sammenligne dem.</p>
+        <input type="text" id="nummer" placeholder="Kommunenummer">
+        <button onclick="detaljer_input();">Send</button>
         <input type="text" id="nummer" placeholder="Kommunenummer">
         <button onclick="detaljer_input();">Send</button>
     </div>
