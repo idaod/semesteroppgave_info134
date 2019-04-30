@@ -52,22 +52,22 @@ function parset_tekst(url, objekt) {
 
 function oversikt(){
   for (var nummer of befolkning.getIDs()){
-    for(var element of befolkning.getInfo()){
-      innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
-  }
+    element = befolkning.getInfo(nummer);
+    innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
   //console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNames(nummer)[0] + " Befolkning: " + befolkning.getTotal(nummer,"2018"))
-  var liste = document.createElement("li");
+  var liste = document.createElement("table");
   var oversikt = document.createTextNode(" Kommune: "+ befolkning.getNames(nummer)[0] + ", " + "Kommunenummer: " + nummer + ", " +  "Befolkning: " + befolkning.getTotal(nummer,"2018"))
   liste.appendChild(oversikt);
   document.body.appendChild(liste);
-  }
+}
 }
 
 function detaljer_input(){
+
   var user_value = document.getElementById("nummer").value;
 
-  for(var nr in befolkning.getIDs()){
-    if(nr === user_value){
+  for(var kommunenummer in befolkning.getIDs()){
+    if(kommunenummer === user_value){
       detaljer(user_value);
     }
   }
@@ -76,23 +76,22 @@ function detaljer_input(){
 
 
 function detaljer(nr){
+  console.log(befolkning.getInfo(nr));
 
 }
 
 
 
 
-function getNames(id){
+function getNames(){
 
   var list = [];
   for (var name in this.data["elementer"]){
     var kommune_objekt = this.data["elementer"][name];
     var kommunenummer = kommune_objekt["kommunenummer"];
-    if(id==kommunenummer){
-      list.push(name);
-    }
 
-  }
+    list.push(name);
+    }
   return list;
 }
 
@@ -101,29 +100,27 @@ function getIDs(){
      var list = [];
      for (var x in this.data["elementer"]){
        var kommune = this.data["elementer"][x]
-      let nr = kommune["kommunenummer"];
-      list.push(nr)
+      let id = kommune["kommunenummer"];
+      list.push(id)
 }
 return list
 }
 
 function getInfo(id){
 
-    let list = []
     for(let kommune in this.data["elementer"]){
       let kommune_objekt = this.data["elementer"][kommune]
-      let nr=kommune_objekt["kommunenummer"]
+      let nr = kommune_objekt["kommunenummer"]
       if(id==nr){
-      list.push(kommune_objekt)
+      return kommune_objekt;
       }
     }
-  return list
 }
 
 function getTotal(id, år){
     let list = []
     for(let kommune in this.data["elementer"]){
-      let kommune_objekt=this.data["elementer"][kommune]
+      let kommune_objekt = this.data["elementer"][kommune]
       let nr = kommune_objekt["kommunenummer"]
       if (id===nr){
         let befolkning = (kommune_objekt["Menn"][år] + kommune_objekt["Kvinner"][år])
