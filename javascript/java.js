@@ -103,7 +103,6 @@ function detaljer(nr){
 }
 
 
-
 function getNames(id){
 
   var list = [];
