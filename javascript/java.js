@@ -73,9 +73,13 @@ function detaljer_input(){
   }
 }
 
+
+
 function detaljer(nr){
 
 }
+
+
 
 
 function getNames(id){
