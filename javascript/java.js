@@ -35,11 +35,6 @@ const URL_befolkning = "http://wildboy.uib.no/~tpe056/folk/104857.json";
 const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 
-var introduksjon_btn = document.getElementById("introduksjon");
-var oversikt_btn = document.getElementById("oversikt");
-var detaljer_btn = document.getElementById("detaljer");
-var sammenligning_btn = document.getElementById("sammenligning");
-
 
 function parset_tekst(url, objekt) {
   var xhttp = new XMLHttpRequest();
@@ -56,18 +51,14 @@ function parset_tekst(url, objekt) {
 
 
 function oversikt(){
-
-  introduksjon_btn.classList.add("hide-me");
-
   for (var nummer of befolkning.getIDs()){
     element = befolkning.getInfo(nummer);
     innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
   //console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNames(nummer)[0] + " Befolkning: " + befolkning.getTotal(nummer,"2018"))
-  var liste = document.createElement("li");
+  var liste = document.createElement("table");
   var oversikt = document.createTextNode(" Kommune: "+ befolkning.getNames(nummer)[0] + ", " + "Kommunenummer: " + nummer + ", " +  "Befolkning: " + befolkning.getTotal(nummer,"2018"))
   liste.appendChild(oversikt);
   document.body.appendChild(liste);
-
 }
 }
 
@@ -90,11 +81,11 @@ function detaljer_input(){
 
 
 
-
 function detaljer(nr){
-  console.log("hei");
+  console.log(befolkning.getInfo(nr));
 
 }
+
 
 
 
@@ -147,5 +138,9 @@ function getTotal(id, år){
 
 
 
-
-  //for x of y henter ut elementer, for x in y finner index
+  //Hvordan få verdien fra skjemaet?
+  //Hvordan få ut den enkelte kommunen fra objektet??
+  //of henter ut elementer, for x in y finner index
+  //hvorfor får vi bare opp Halden som kommunenavn?
+  //hjelp til å skjule ting
+  //når vi trykker på oversikt en gang til så kommer den to ganger 
