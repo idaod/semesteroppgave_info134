@@ -136,7 +136,36 @@ function getTotal(id, år){
     return list
   };
 
+let table = document.createElement("table");
+table.setAttribute("id", "myTable")
 
+let arrHead = ["Årstall", "Befolkning", "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Høyere utdanning"]
+let årstall = ["2007", "2009" "2011", "2013", "2015", "2017"]
+
+let statistikk = []
+for (let år of årstall){
+  statistikk.push([år, befolkning.getTotal(nr,år)[0]])
+}
+
+let tr=table.insertRow(-1)
+
+for(let i=0; i<arrHead.length; i++){
+  let header=document.createElement("th");
+  header.innerHTML=arrHead[i]
+  tr.appendChild(header)
+}
+
+for(let y=0; y<årstall.length; y++){
+  tr=table.insertRow(-1);
+
+  for(let j=0; j<arrHead.length; j++){
+    let td=document.createElement("td");
+    td=tr.insertCell(-1);
+    td.innerHTML=statistikk[y][j]
+  }
+}
+
+document.getElementById("detaljer").appendChild(table)
 
   //Hvordan få verdien fra skjemaet?
   //Hvordan få ut den enkelte kommunen fra objektet??
