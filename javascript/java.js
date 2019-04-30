@@ -35,10 +35,12 @@ const URL_befolkning = "http://wildboy.uib.no/~tpe056/folk/104857.json";
 const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 
-var introduksjon_btn = document.getElementById("introduksjon");
-var oversikt_btn = document.getElementById("oversikt");
-var detaljer_btn = document.getElementById("detaljer");
-var sammenligning_btn = document.getElementById("sammenligning");
+const introduksjon_btn = document.getElementById("introduksjon");
+const oversikt_btn = document.getElementById("oversikt");
+const detaljer_btn = document.getElementById("detaljer");
+const sammenligning_btn = document.getElementById("sammenligning");
+
+
 
 
 function parset_tekst(url, objekt) {
@@ -57,9 +59,13 @@ function parset_tekst(url, objekt) {
 
 function oversikt(){
 
-  //introduksjon_btn.classList.add("hide-me");
-  //detaljer_btn.classList.add("hide-me");
-  //sammenligning_btn.classList.add("hide-me");
+var introduksjon_btn = document.getElementById("introduksjon");
+var detaljer_btn = document.getElementById("detaljer");
+var sammenligning_btn = document.getElementById("sammenligning");
+
+  introduksjon_btn.classList.add("hide-me");
+  detaljer_btn.classList.add("hide-me");
+  sammenligning_btn.classList.add("hide-me");
 
   for (var nummer of befolkning.getIDs()){
     element = befolkning.getInfo(nummer);
