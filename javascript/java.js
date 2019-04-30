@@ -57,7 +57,9 @@ function parset_tekst(url, objekt) {
 
 function oversikt(){
 
-  introduksjon_btn.classList.add("hide-me");
+  //introduksjon_btn.classList.add("hide-me");
+  //detaljer_btn.classList.add("hide-me");
+  //sammenligning_btn.classList.add("hide-me");
 
   for (var nummer of befolkning.getIDs()){
     element = befolkning.getInfo(nummer);
@@ -84,11 +86,9 @@ function detaljer_input(){
     }
   }
   if(found == false){
-    console.log("Dette er feil.");
+    console.log("Dette er feil."); // LAG FEILMELDING HER.
   }
 }
-
-
 
 
 function detaljer(nr){
@@ -98,14 +98,15 @@ function detaljer(nr){
 
 
 
-function getNames(){
+function getNames(id){
 
   var list = [];
   for (var name in this.data["elementer"]){
     var kommune_objekt = this.data["elementer"][name];
     var kommunenummer = kommune_objekt["kommunenummer"];
-
-    list.push(name);
+    if(id==kommunenummer){
+      list.push(name);
+    }
     }
   return list;
 }
