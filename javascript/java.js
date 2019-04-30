@@ -41,8 +41,6 @@ const detaljer_btn = document.getElementById("detaljer");
 const sammenligning_btn = document.getElementById("sammenligning");
 
 
-
-
 function parset_tekst(url, objekt) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -98,7 +96,26 @@ function detaljer_input(){
 
 
 function detaljer(nr){
-  console.log("hei");
+
+  //var kommune_navn = befolkning.getNames(nr);
+  //var kommune_info = befolkning.getInfo(nr);
+
+    // var introduksjon_btn = document.getElementById("introduksjon");
+    // var oversikt_btn = document.getElementById("detaljer");
+    // var sammenligning_btn = document.getElementById("sammenligning");
+
+    // introduksjon_btn.classList.add("hide-me");
+    // detaljer_btn.classList.add("hide-me");
+    // sammenligning_btn.classList.add("hide-me");
+    //
+    // for (var nummer of befolkning.getIDs()){
+    //   element = befolkning.getInfo(nummer);
+    //   innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
+    // //console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNames(nummer)[0] + " Befolkning: " + befolkning.getTotal(nummer,"2018"))
+    // var liste = document.createElement("li");
+    // var oversikt = document.createTextNode(" Kommune: "+ befolkning.getNames(nummer)[0] + ", " + "Kommunenummer: " + nummer + ", " +  "Befolkning: " + befolkning.getTotal(nummer,"2018"))
+    // liste.appendChild(oversikt);
+    // document.body.appendChild(liste);
 
 }
 
@@ -151,36 +168,36 @@ function getTotal(id, år){
     return list
   };
 
-let table = document.createElement("table");
-table.setAttribute("id", "myTable")
-
-let arrHead = ["Årstall", "Befolkning", "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Høyere utdanning"]
-let årstall = ["2007", "2009" "2011", "2013", "2015", "2017"]
-
-let statistikk = []
-for (let år of årstall){
-  statistikk.push([år, befolkning.getTotal(nr,år)[0]])
-}
-
-let tr=table.insertRow(-1)
-
-for(let i=0; i<arrHead.length; i++){
-  let header=document.createElement("th");
-  header.innerHTML=arrHead[i]
-  tr.appendChild(header)
-}
-
-for(let y=0; y<årstall.length; y++){
-  tr=table.insertRow(-1);
-
-  for(let j=0; j<arrHead.length; j++){
-    let td=document.createElement("td");
-    td=tr.insertCell(-1);
-    td.innerHTML=statistikk[y][j]
-  }
-}
-
-document.getElementById("detaljer").appendChild(table)
+// let table = document.createElement("table");
+// table.setAttribute("id", "myTable")
+//
+// let arrHead = ["Årstall", "Befolkning", "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Høyere utdanning"]
+// let årstall = ["2007", "2009" "2011", "2013", "2015", "2017"]
+//
+// let statistikk = []
+// for (let år of årstall){
+//   statistikk.push([år, befolkning.getTotal(nr,år)[0]])
+// }
+//
+// let tr=table.insertRow(-1)
+//
+// for(let i=0; i<arrHead.length; i++){
+//   let header=document.createElement("th");
+//   header.innerHTML=arrHead[i]
+//   tr.appendChild(header)
+// }
+//
+// for(let y=0; y<årstall.length; y++){
+//   tr=table.insertRow(-1);
+//
+//   for(let j=0; j<arrHead.length; j++){
+//     let td=document.createElement("td");
+//     td=tr.insertCell(-1);
+//     td.innerHTML=statistikk[y][j]
+//   }
+// }
+//
+// document.getElementById("detaljer").appendChild(table)
 
 
   //for x of y henter ut elementer, for x in y finner index
