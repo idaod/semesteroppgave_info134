@@ -26,6 +26,10 @@ table, th, td{
   border: 1px solid black;
 }
 
+.hide-me{
+  display: none;
+}
+
 
 /*introduksjon, oversikt, detaljer og sammenlikning.
 men bare nøyaktig ett av dem skal til
