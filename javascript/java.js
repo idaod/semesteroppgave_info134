@@ -102,10 +102,6 @@ function detaljer(nr){
   liste.appendChild(detaljer);
   document.getElementById("detaljer").appendChild(liste);
 
-
-
-
-
 }
 
 function getPercent(nr){
