@@ -13,7 +13,7 @@
 
     <!-- navigasjonen -->
   <div>
-    <ul id="nav">
+    <ul class="center" id="nav">
       <li onclick="show_introduksjon();"> Introduksjon </li>
       <li onclick="show_oversikt();"> Oversikt </li>
       <li onclick="show_detaljer();"> Detaljer </li>
@@ -42,14 +42,14 @@
 
 
     <div id="detaljer" class="detaljer hide-me">
-      <form align="center" id="form">
+      <form class="center" id="form">
         <p>Skriv inn et kommunenummer for info om valgt kommune.</p>
         <input type="text" id="nummer" placeholder="Kommunenummer">
         <input type="button" onclick="detaljer_input();" value="Send"></input>
     </div>
 
     <div id="sammenligning" class="sammenligning hide-me">
-      <form align="center" id="form">
+      <form class="center" id="form">
         <p>Skriv inn to kommunenummer for å sammenligne dem.</p>
         <input type="text" id="nummer" placeholder="Kommunenummer">
         <input type="text" id="nummer" placeholder="Kommunenummer">
@@ -57,12 +57,11 @@
     </div>
 
 
-
 <!-- Footer -->
     </div>
     <hr>
     <div id="footer">
-    <p align="center"> Oppgavebesvarelse INFO134 </p>
+    <p class="center"> Oppgavebesvarelse INFO134 </p>
     </div>
   </body>
 </html>

@@ -11,7 +11,6 @@ const URL_befolkning = "http://wildboy.uib.no/~tpe056/folk/104857.json";
 const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 
-
 function parset_tekst(url, objekt) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -66,10 +65,37 @@ function oversikt(){
     element = befolkning.getInfo(nummer);
     innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
 
-  var liste = document.createElement("li");
-  var oversikt = document.createTextNode(" Kommune: "+ befolkning.getNames(nummer)[0] + ", " + "Kommunenummer: " + nummer + ", " +  "Befolkning: " + befolkning.getTotal(nummer,"2018"));
-    liste.appendChild(oversikt);
-    document.getElementById("oversikt").appendChild(liste);
+  var liste = document.createElement("ul");
+  var tekst = document.createTextNode(" Kommune: " + befolkning.getNames(nummer) + ", " + "Kommunenummer: " + nummer + ", " +  "Befolkning: " + befolkning.getTotal(nummer,"2018"));
+  liste.appendChild(tekst);
+  document.getElementById("oversikt").appendChild(liste);
+
+
+  // var tom_liste = []
+  // var liste_element = document.createElement("ul");
+  // var tekst = document.createTextNode(" Kommune: " + befolkning.getNames(nummer)[0] + ", " + "Kommunenummer: " + nummer + ", " +  "Befolkning: " + befolkning.getTotal(nummer,"2018"));
+  // liste_element.appendChild(tekst);
+  // tom_liste.appendChild(liste_element);
+  //
+  // console.log(tom_liste);
+
+  //document.getElementById("oversikt").appendChild(liste);
+
+  // for(x in liste){
+  //   if(i<50){
+  //document.getElementById("oversikt").appendChild(liste)
+//};
+  // }
+
+  // var i = 0;
+  //
+  // while(i<5){
+  //   console.log(i);
+  //   i++
+  //   document.getElementById("oversikt").appendChild(liste);
+  // }
+
+  //document.getElementById("oversikt").appendChild(liste);
   }
 }
 
@@ -96,35 +122,61 @@ function detaljer(nr){
 
   var kommune_navn = befolkning.getNames(nr);
   var kommune_info = befolkning.getInfo(nr);
+  var kommune_befolkning = befolkning.getTotal(nr,"2018");
 
-  var liste = document.createElement("li");
-  var detaljer = document.createTextNode(" Kommune: "+ kommune_navn + ", " + "Kommunenummer: " + nr + ", " +  "Befolkning: " + befolkning.getTotal(nr,"2018"))
+  var liste = document.createElement("ul");
+  var detaljer = document.createTextNode(" Kommune: "+ kommune_navn + ", " + "Kommunenummer: " + nr + ", " +  "Befolkning: " + kommune_befolkning);
   liste.appendChild(detaljer);
   document.getElementById("detaljer").appendChild(liste);
+  sysselsetting.getPercent(nr);
 
 }
 
 function getPercent(nr){
 
-  var kvinner_liste = []
-  var menn_liste = []
-  var begge_liste = []
+  var kvinner_prc = [];
+  var menn_prc = [];
+  var begge_prc = [];
+
 
   for(var x in this.data["elementer"]){
 
     var kommune_objekt = this.data["elementer"][x];
+    var kommunenummer = kommune_objekt["kommunenummer"];
+
     var menn = kommune_objekt["Menn"]["2018"];
     var kvinner = kommune_objekt["Kvinner"]["2018"];
     var begge = kommune_objekt["Begge kjønn"]["2018"]
-    var kommunenummer = kommune_objekt["kommunenummer"];
+
 
     if(nr==kommunenummer){
-      kvinner_liste.push(kvinner);
-      menn_liste.push(menn);
-      begge_liste.push(begge);
-
+      kvinner_prc.push(kvinner);
+      menn_prc.push(menn);
+      begge_prc.push(begge);
+      console.log(kvinner_prc);
+      console.log(menn_prc);
+      console.log(begge_prc);
     }
   }
+
+    total_befolkning = befolkning.getTotal(nr,"2018");
+    console.log(total_befolkning);
+
+    // var kvinner_total = [];
+    // var menn_total = [];
+    // var begge_total = [];
+    // var
+    //
+    // for(let kommune in befolking.getInfo()){
+    //   let kommune_objekt = this.data["elementer"][kommune]
+    //   let nr = kommune_objekt["kommunenummer"]
+    //   if (id===nr){
+    //     let befolkning = (kommune_objekt["Menn"][år] + kommune_objekt["Kvinner"][år])
+    //     list.push(befolkning)
+    //
+    // }
+    //   return list
+
 }
 
 
@@ -212,6 +264,8 @@ function getTotal(id, år){
   //for x of y henter ut elementer, for x in y finner index
 
   //når vi trykker på oversikt en gang til så kommer den to ganger
-  //Hvorfor funker ikke konstruktørene i et annet dokument?
   //Lage en ul og li i for løkke
   // Lage innerHTML istedenfor?
+  //Trenger vi bare å lage en konstruktør?
+  //Insert loading message?
+  //Forskjell på let og var?

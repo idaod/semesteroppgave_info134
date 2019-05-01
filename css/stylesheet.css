@@ -6,7 +6,7 @@ body{
   border: 10%;
 }
 
-#nav{
+.center{
   text-align: center;
 }
 
@@ -22,10 +22,6 @@ body{
   cursor: pointer;
 }
 
-table, th, td{
-  border: 1px solid black;
-}
-
 .hide-me{
   display: none;
 }
@@ -33,13 +29,3 @@ table, th, td{
 .show-me{
   display: block;
 }
-
-
-/*introduksjon, oversikt, detaljer og sammenlikning.
-men bare nøyaktig ett av dem skal til
-enhver tid være synlig. De tre andre skal skjules ved hjelp av CSS
- og å tilskrive klasser til elementene
-
-.navigation > button {
-  visibility: hidden;
-}*/
