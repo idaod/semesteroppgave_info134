@@ -30,6 +30,10 @@ table, th, td{
   display: none;
 }
 
+.show-me{
+  display: block;
+}
+
 
 /*introduksjon, oversikt, detaljer og sammenlikning.
 men bare nøyaktig ett av dem skal til

@@ -18,9 +18,6 @@ function Utdanning(url){
   }
 }
 
-let befolkning;
-let sysselsetting;
-let utdanning;
 
 window.onload = function(){
    befolkning = new Befolkning(URL_befolkning);
@@ -34,11 +31,6 @@ window.onload = function(){
 const URL_befolkning = "http://wildboy.uib.no/~tpe056/folk/104857.json";
 const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
-
-const introduksjon_btn = document.getElementById("introduksjon");
-const oversikt_btn = document.getElementById("oversikt");
-const detaljer_btn = document.getElementById("detaljer");
-const sammenligning_btn = document.getElementById("sammenligning");
 
 
 function parset_tekst(url, objekt) {
@@ -54,28 +46,54 @@ function parset_tekst(url, objekt) {
   xhttp.send(null);
 }
 
+function show_introduksjon(){
+
+  document.getElementById("introduksjon").className = "show-me";
+  document.getElementById("oversikt").className = "hide-me";
+  document.getElementById("detaljer").className = "hide-me";
+  document.getElementById("sammenligning").className = "hide-me";
+}
+
+function show_oversikt(){
+
+  document.getElementById("introduksjon").className = "hide-me";
+  document.getElementById("oversikt").className = "show-me";
+  document.getElementById("detaljer").className = "hide-me";
+  document.getElementById("sammenligning").className = "hide-me";
+  oversikt();
+}
+
+function show_detaljer(){
+
+  document.getElementById("introduksjon").className = "hide-me";
+  document.getElementById("oversikt").className = "hide-me";
+  document.getElementById("detaljer").className = "show-me";
+  document.getElementById("sammenligning").className = "hide-me";
+}
+
+function show_sammenligning(){
+
+  document.getElementById("introduksjon").className = "hide-me";
+  document.getElementById("oversikt").className = "hide-me";
+  document.getElementById("detaljer").className = "hide-me";
+  document.getElementById("sammenligning").className = "show-me";
+}
+
+
 
 function oversikt(){
-
-var introduksjon_btn = document.getElementById("introduksjon");
-var detaljer_btn = document.getElementById("detaljer");
-var sammenligning_btn = document.getElementById("sammenligning");
-
-  introduksjon_btn.classList.add("hide-me");
-  detaljer_btn.classList.add("hide-me");
-  sammenligning_btn.classList.add("hide-me");
 
   for (var nummer of befolkning.getIDs()){
     element = befolkning.getInfo(nummer);
     innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
-  //console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNames(nummer)[0] + " Befolkning: " + befolkning.getTotal(nummer,"2018"))
-  var liste = document.createElement("li");
-  var oversikt = document.createTextNode(" Kommune: "+ befolkning.getNames(nummer)[0] + ", " + "Kommunenummer: " + nummer + ", " +  "Befolkning: " + befolkning.getTotal(nummer,"2018"))
-  liste.appendChild(oversikt);
-  document.body.appendChild(liste);
 
+  var liste = document.createElement("li");
+  var oversikt = document.createTextNode(" Kommune: "+ befolkning.getNames(nummer)[0] + ", " + "Kommunenummer: " + nummer + ", " +  "Befolkning: " + befolkning.getTotal(nummer,"2018"));
+    liste.appendChild(oversikt);
+    document.getElementById("oversikt").appendChild(liste);
+  }
 }
-}
+
 
 function detaljer_input(){
 
@@ -90,33 +108,21 @@ function detaljer_input(){
     }
   }
   if(found == false){
-    console.log("Dette er feil."); // LAG FEILMELDING HER.
+    alert("Ugyldig kommunenummer. Prøv igjen.")
   }
 }
 
 
 function detaljer(nr){
 
-  //var kommune_navn = befolkning.getNames(nr);
-  //var kommune_info = befolkning.getInfo(nr);
+  var kommune_navn = befolkning.getNames(nr);
+  var kommune_info = befolkning.getInfo(nr);
 
-    // var introduksjon_btn = document.getElementById("introduksjon");
-    // var oversikt_btn = document.getElementById("detaljer");
-    // var sammenligning_btn = document.getElementById("sammenligning");
-
-    // introduksjon_btn.classList.add("hide-me");
-    // detaljer_btn.classList.add("hide-me");
-    // sammenligning_btn.classList.add("hide-me");
-    //
-    // for (var nummer of befolkning.getIDs()){
-    //   element = befolkning.getInfo(nummer);
-    //   innbygger = element["Menn"]["2018"] + element["Kvinner"]["2018"]
-    // //console.log("Kommunenummer: " + nummer + " Kommune: " + befolkning.getNames(nummer)[0] + " Befolkning: " + befolkning.getTotal(nummer,"2018"))
-    // var liste = document.createElement("li");
-    // var oversikt = document.createTextNode(" Kommune: "+ befolkning.getNames(nummer)[0] + ", " + "Kommunenummer: " + nummer + ", " +  "Befolkning: " + befolkning.getTotal(nummer,"2018"))
-    // liste.appendChild(oversikt);
-    // document.body.appendChild(liste);
-
+  var liste = document.createElement("li");
+  var detaljer = document.createTextNode(" Kommune: "+ kommune_navn + ", " + "Kommunenummer: " + nr + ", " +  "Befolkning: " + befolkning.getTotal(nr,"2018"))
+  liste.appendChild(detaljer);
+  document.getElementById("detaljer").appendChild(liste);
+  
 }
 
 
@@ -209,3 +215,6 @@ function getTotal(id, år){
   //hvorfor får vi bare opp Halden som kommunenavn?
   //hjelp til å skjule ting
   //når vi trykker på oversikt en gang til så kommer den to ganger
+  //Hvorfor funker ikke konstruktørene i et annet dokument?
+  //Lage en ul og li i for løkke
+  // Lage innerHTML istedenfor?
