@@ -269,3 +269,4 @@ function getTotal(id, år){
   //Trenger vi bare å lage en konstruktør?
   //Insert loading message?
   //Forskjell på let og var?
+  // Hvorfor blir ikke sammenligning diven center?
