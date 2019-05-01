@@ -9,6 +9,7 @@ function Befolkning(url){
 }
 
 function Sysselsetting(url){
+  this.getPercent = getPercent;
   this.getNames = getNames;
   this.getIDs = getIDs;
   this.getInfo = getInfo;

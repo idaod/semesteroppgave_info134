@@ -1,24 +1,3 @@
-function Sysselsetting(url){
-  this.getNames = getNames;
-  this.getIDs = getIDs;
-  this.getInfo = getInfo;
-  this.getTotal = getTotal;
-  this.load = function(){
-    parset_tekst(url,this)
-  }
-}
-
-function Utdanning(url){
-  this.getNames = getNames;
-  this.getIDs = getIDs;
-  this.getInfo = getInfo;
-  this.getTotal = getTotal;
-  this.load = function(){
-    parset_tekst(url,this)
-  }
-}
-
-
 window.onload = function(){
    befolkning = new Befolkning(URL_befolkning);
    sysselsetting = new Sysselsetting(URL_sysselsetting);
@@ -122,8 +101,36 @@ function detaljer(nr){
   var detaljer = document.createTextNode(" Kommune: "+ kommune_navn + ", " + "Kommunenummer: " + nr + ", " +  "Befolkning: " + befolkning.getTotal(nr,"2018"))
   liste.appendChild(detaljer);
   document.getElementById("detaljer").appendChild(liste);
-  
+
+
+
+
+
 }
+
+function getPercent(nr){
+
+  var kvinner_liste = []
+  var menn_liste = []
+  var begge_liste = []
+
+  for(var x in this.data["elementer"]){
+
+    var kommune_objekt = this.data["elementer"][x];
+    var menn = kommune_objekt["Menn"]["2018"];
+    var kvinner = kommune_objekt["Kvinner"]["2018"];
+    var begge = kommune_objekt["Begge kjønn"]["2018"]
+    var kommunenummer = kommune_objekt["kommunenummer"];
+
+    if(nr==kommunenummer){
+      kvinner_liste.push(kvinner);
+      menn_liste.push(menn);
+      begge_liste.push(begge);
+
+    }
+  }
+}
+
 
 
 function getNames(id){
@@ -208,12 +215,6 @@ function getTotal(id, år){
 
   //for x of y henter ut elementer, for x in y finner index
 
-
-  //Hvordan få verdien fra skjemaet?
-  //Hvordan få ut den enkelte kommunen fra objektet??
-  //of henter ut elementer, for x in y finner index
-  //hvorfor får vi bare opp Halden som kommunenavn?
-  //hjelp til å skjule ting
   //når vi trykker på oversikt en gang til så kommer den to ganger
   //Hvorfor funker ikke konstruktørene i et annet dokument?
   //Lage en ul og li i for løkke
