@@ -303,12 +303,7 @@ function getTotal(id, år){
 
   //når vi trykker på oversikt en gang til så kommer den to ganger
   //Lage en ul og li i for løkke
-<<<<<<< HEAD
   //Lage innerHTML istedenfor?
-=======
-  // Lage innerHTML istedenfor appendChild?
-  //Trenger vi bare å lage en konstruktør?
->>>>>>> d136551708892e47b1eb7cdf69b37c6ac60d9c16
   //Insert loading message?
   // Hvorfor blir ikke sammenligning diven center?
   //Få detaljer til å ikke stå flere ganger
