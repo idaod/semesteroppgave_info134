@@ -327,5 +327,11 @@ function getTotal(id, år){
   //for x of y henter ut elementer, for x in y finner index
 
   //Insert loading message?
+<<<<<<< HEAD
   //Få detaljer til å ikke stå flere ganger
   //Lage funksjoner til tabellen i detaljer.
+=======
+  //Forskjell på let og var?
+  // Hvorfor blir ikke sammenligning diven center?
+  //befolkning * prosent / 100 for å finne antall sysselsatte 
+>>>>>>> 8f05580a623f69c9015491b1e381fa815ac06c76
