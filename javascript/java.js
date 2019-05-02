@@ -182,33 +182,6 @@ function getUtdanning(nr){
 
 
 
-// function getUtdanning(nr){
-//
-//   var liste_unikort_menn = [];
-//   var liste_unikort_kvinner = [];
-//   var liste_unilang_menn = [];
-//   var liste_unilang_kvinner = [];
-//
-//   for(var x in this.data["elementer"]){
-//
-//     var kommune_objekt = this.data["elementer"][x];
-//     var kommunenummer = kommune_objekt["kommunenummer"];
-//
-//     var unikort_menn = kommune_objekt["03a"]["Menn"]["2017"];
-//     var unikort_kvinner = kommune_objekt["03a"]["Kvinner"]["2017"];
-//     var unilang_menn = kommune_objekt["04a"]["Menn"]["2017"];
-//     var unilang_kvinner = kommune_objekt["04a"]["Kvinner"]["2017"];
-//
-//     if(nr == kommunenummer){
-//       liste_unikort_menn.push(unikort_menn);
-//       liste_unikort_kvinner.push(unikort_kvinner);
-//       liste_unilang_menn.push(unilang_menn);
-//       liste_unilang_kvinner.push(unilang_kvinner);
-//     }
-//   }
-//   return [liste_unikort_menn, liste_unikort_kvinner, liste_unilang_menn, liste_unilang_kvinner];
-// }
-
 
 
 function getNames(id){
