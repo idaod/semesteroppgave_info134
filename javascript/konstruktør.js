@@ -21,6 +21,7 @@ function Sysselsetting(url){
 }
 
 function Utdanning(url){
+  this.getUtdanning = getUtdanning;
   this.getNames = getNames;
   this.getIDs = getIDs;
   this.getInfo = getInfo;
