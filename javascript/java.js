@@ -175,7 +175,7 @@ function detaljer_tabell(nr){
   let resultater = [];
 
   for (let år of årstall){
-    resultater.push([år, befolkning.getTotal(nr, år)[2], sysselsatte.getUtdanning(nr, år), "Grunnskole", "Vgs", "Fagskole", "Utdanning"],);
+    resultater.push([år, befolkning.getTotal(nr, år)[2], "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Utdanning"],);
   }
 
   let tr = table.insertRow(-1);
