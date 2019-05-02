@@ -270,3 +270,4 @@ function getTotal(id, år){
   //Insert loading message?
   //Forskjell på let og var?
   // Hvorfor blir ikke sammenligning diven center?
+  //befolkning * prosent / 100 for å finne antall sysselsatte 
