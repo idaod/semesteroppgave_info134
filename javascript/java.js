@@ -111,12 +111,14 @@ function detaljer(nr){
   var kvinner_befolkning_2018 = befolkning.getTotal(nr, "2018")[0];
   var menn_befolkning_2018 = befolkning.getTotal(nr, "2018")[1];
 
+
   var unikort_menn = utdanning.getUtdanning(nr, "2017")[0];
   var unikort_kvinner = utdanning.getUtdanning(nr, "2017")[1];
   var unilang_menn = utdanning.getUtdanning(nr, "2017")[2];
   var unilang_kvinner = utdanning.getUtdanning(nr, "2017")[3];
   var kvinner_befolkning_2017 = befolkning.getTotal(nr, "2017")[0];
   var menn_befolkning_2017 = befolkning.getTotal(nr, "2017")[1];
+  var samlet_befolkning_2017 = kvinner_befolkning_2017 + menn_befolkning_2017;
 
   var samlet_prc_menn = unikort_menn + unilang_menn;
   var samlet_prc_kvinner = unikort_kvinner + unilang_kvinner;
@@ -126,6 +128,8 @@ function detaljer(nr){
   var begge_ant = Math.round((menn_ant + kvinner_ant));
   var uni_menn_ant = Math.round((menn_befolkning_2017 * samlet_prc_menn)/100);
   var uni_kvinner_ant = Math.round((kvinner_befolkning_2017 * samlet_prc_kvinner)/100);
+  var begge_ant_utd = Math.round(uni_menn_ant + uni_kvinner_ant);
+  var begge_prc_utd = Math.round((begge_ant_utd/samlet_befolkning_2017)*100);
 
   var liste = document.createElement("ul");
   var liste_oversikt = document.createElement("li");
@@ -134,7 +138,7 @@ function detaljer(nr){
 
   var oversikt = document.createTextNode("Kommune: "+ kommune_navn + ", " + "Kommunenummer: " + nr + ", " +  "Befolkning: " + kommune_befolkning)
   var sysselsatte = document.createTextNode(" Antall sysselsatte menn: " + menn_ant + "(" + menn_prc + "%)" + " Antall sysselsatte kvinner: " + kvinner_ant + "(" + kvinner_prc + "%)" + " Antall sysselsatte totalt: " + begge_ant + "(" + begge_prc + "%)" );
-  var utdanninger = document.createTextNode("Antall menn med høyere utdanning: " + uni_menn_ant + "(" + samlet_prc_menn + "%)" + " Antall kvinner med høyere utdanning: " + uni_kvinner_ant + "(" + samlet_prc_kvinner + "%)");
+  var utdanninger = document.createTextNode("Antall menn med høyere utdanning: " + uni_menn_ant + "(" + samlet_prc_menn + "%)" + " Antall kvinner med høyere utdanning: " + uni_kvinner_ant + "(" + samlet_prc_kvinner + "%)" + " Total befolkning med høyere utdanning: " + begge_ant_utd + "(" + begge_prc_utd + "%)");
 
   liste_oversikt.appendChild(oversikt);
   liste_sysselsatte.appendChild(sysselsatte);
@@ -145,6 +149,42 @@ function detaljer(nr){
   liste.appendChild(liste_uni);
 
   document.getElementById("detaljer").appendChild(liste);
+  detaljer_tabell(nr);
+}
+
+function detaljer_tabell(nr){
+
+  let table = document.createElement("table");
+  table.setAttribute("id", "myTable");
+
+  let arrHead = ["Årstall", "Befolkning", "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Høyere utdanning"];
+  let årstall = ["2007", "2009", "2011", "2013", "2015", "2017"];
+
+  let resultater = [];
+
+  for (let år of årstall){
+    resultater.push([år, befolkning.getTotal(nr, år)[2], "hei"],);
+  }
+
+  let tr = table.insertRow(-1);
+
+  for(let i = 0; i<arrHead.length; i++){
+    let header = document.createElement("th");
+    header.innerHTML = arrHead[i];
+    tr.appendChild(header);
+  }
+
+  for(let y=0; y<årstall.length; y++){
+    tr = table.insertRow(-1);
+
+    for(let j = 0; j<arrHead.length; j++){
+      let td = document.createElement("td");
+      td = tr.insertCell(-1);
+      td.innerHTML = resultater[y][j];
+    }
+  }
+
+  document.getElementById("detaljer").appendChild(table);
 }
 
 //---SAMMENLIGNING--//
@@ -174,7 +214,7 @@ function sammenligning_input(){
 }
 
 function sammenligning(user_value, user_value2){
-  
+
 }
 
 
@@ -275,43 +315,9 @@ function getTotal(id, år){
     }
   };
 
-// let table = document.createElement("table");
-// table.setAttribute("id", "myTable")
-//
-// let arrHead = ["Årstall", "Befolkning", "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Høyere utdanning"]
-// let årstall = ["2007", "2009" "2011", "2013", "2015", "2017"]
-//
-// let statistikk = []
-// for (let år of årstall){
-//   statistikk.push([år, befolkning.getTotal(nr,år)[0]])
-// }
-//
-// let tr=table.insertRow(-1)
-//
-// for(let i=0; i<arrHead.length; i++){
-//   let header=document.createElement("th");
-//   header.innerHTML=arrHead[i]
-//   tr.appendChild(header)
-// }
-//
-// for(let y=0; y<årstall.length; y++){
-//   tr=table.insertRow(-1);
-//
-//   for(let j=0; j<arrHead.length; j++){
-//     let td=document.createElement("td");
-//     td=tr.insertCell(-1);
-//     td.innerHTML=statistikk[y][j]
-//   }
-// }
-//
-// document.getElementById("detaljer").appendChild(table)
-
 
   //for x of y henter ut elementer, for x in y finner index
 
-  //når vi trykker på oversikt en gang til så kommer den to ganger
-  //Lage en ul og li i for løkke
-  //Lage innerHTML istedenfor?
   //Insert loading message?
-  // Hvorfor blir ikke sammenligning diven center?
   //Få detaljer til å ikke stå flere ganger
+  //Lage funksjoner til tabellen i detaljer.
