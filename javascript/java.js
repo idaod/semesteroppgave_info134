@@ -265,7 +265,7 @@ function getTotal(id, år){
 
   //når vi trykker på oversikt en gang til så kommer den to ganger
   //Lage en ul og li i for løkke
-  // Lage innerHTML istedenfor?
+  // Lage innerHTML istedenfor appendChild?
   //Trenger vi bare å lage en konstruktør?
   //Insert loading message?
   //Forskjell på let og var?
