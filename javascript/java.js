@@ -108,26 +108,27 @@ function detaljer(nr){
   var kvinner_prc = sysselsetting.getPercent(nr, "2018")[0];
   var menn_prc = sysselsetting.getPercent(nr, "2018")[1];
   var begge_prc = sysselsetting.getPercent(nr, "2018")[2];
+
   var kvinner_befolkning_2018 = befolkning.getTotal(nr, "2018")[0];
   var menn_befolkning_2018 = befolkning.getTotal(nr, "2018")[1];
-
 
   var unikort_menn = utdanning.getUtdanning(nr, "2017")[0];
   var unikort_kvinner = utdanning.getUtdanning(nr, "2017")[1];
   var unilang_menn = utdanning.getUtdanning(nr, "2017")[2];
   var unilang_kvinner = utdanning.getUtdanning(nr, "2017")[3];
+
   var kvinner_befolkning_2017 = befolkning.getTotal(nr, "2017")[0];
   var menn_befolkning_2017 = befolkning.getTotal(nr, "2017")[1];
   var samlet_befolkning_2017 = kvinner_befolkning_2017 + menn_befolkning_2017;
 
-  var samlet_prc_menn = unikort_menn + unilang_menn;
-  var samlet_prc_kvinner = unikort_kvinner + unilang_kvinner;
+  var samlet_uni_prc_menn = unikort_menn + unilang_menn;
+  var samlet_uni_prc_kvinner = unikort_kvinner + unilang_kvinner;
 
   var menn_ant = Math.round((menn_befolkning_2018 * menn_prc) / 100);
   var kvinner_ant = Math.round((kvinner_befolkning_2018 * kvinner_prc) / 100);
   var begge_ant = Math.round((menn_ant + kvinner_ant));
-  var uni_menn_ant = Math.round((menn_befolkning_2017 * samlet_prc_menn)/100);
-  var uni_kvinner_ant = Math.round((kvinner_befolkning_2017 * samlet_prc_kvinner)/100);
+  var uni_menn_ant = Math.round((menn_befolkning_2017 * samlet_uni_prc_menn)/100);
+  var uni_kvinner_ant = Math.round((kvinner_befolkning_2017 * samlet_uni_prc_kvinner)/100);
   var begge_ant_utd = Math.round(uni_menn_ant + uni_kvinner_ant);
   var begge_prc_utd = Math.round((begge_ant_utd/samlet_befolkning_2017)*100);
 
@@ -138,7 +139,7 @@ function detaljer(nr){
 
   var oversikt = document.createTextNode("Kommune: "+ kommune_navn + ", " + "Kommunenummer: " + nr + ", " +  "Befolkning: " + kommune_befolkning)
   var sysselsatte = document.createTextNode(" Antall sysselsatte menn: " + menn_ant + "(" + menn_prc + "%)" + " Antall sysselsatte kvinner: " + kvinner_ant + "(" + kvinner_prc + "%)" + " Antall sysselsatte totalt: " + begge_ant + "(" + begge_prc + "%)" );
-  var utdanninger = document.createTextNode("Antall menn med høyere utdanning: " + uni_menn_ant + "(" + samlet_prc_menn + "%)" + " Antall kvinner med høyere utdanning: " + uni_kvinner_ant + "(" + samlet_prc_kvinner + "%)" + " Total befolkning med høyere utdanning: " + begge_ant_utd + "(" + begge_prc_utd + "%)");
+  var utdanninger = document.createTextNode("Antall menn med høyere utdanning: " + uni_menn_ant + "(" + samlet_uni_prc_menn + "%)" + " Antall kvinner med høyere utdanning: " + uni_kvinner_ant + "(" + samlet_uni_prc_kvinner + "%)" + " Total befolkning med høyere utdanning: " + begge_ant_utd + "(" + begge_prc_utd + "%)");
 
   liste_oversikt.appendChild(oversikt);
   liste_sysselsatte.appendChild(sysselsatte);
@@ -149,41 +150,52 @@ function detaljer(nr){
   liste.appendChild(liste_uni);
 
   document.getElementById("detaljer").appendChild(liste);
+
+  utregning_tabell(nr);
+}
+
+
+
+function utregning_tabell(nr){
+
+  console.log(sysselsetting.getPercent("0101", "2018"));
   detaljer_tabell(nr);
 }
+
+
 
 function detaljer_tabell(nr){
 
   let table = document.createElement("table");
   table.setAttribute("id", "myTable");
 
-  let arrHead = ["Årstall", "Befolkning", "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Høyere utdanning"];
+  let tableHead = ["Årstall", "Befolkning", "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Høyere utdanning"];
   let årstall = ["2007", "2009", "2011", "2013", "2015", "2017"];
 
   let resultater = [];
 
   for (let år of årstall){
-    resultater.push([år, befolkning.getTotal(nr, år)[2], "hei"],);
+    resultater.push([år, befolkning.getTotal(nr, år)[2], sysselsatte.getUtdanning(nr, år), "Grunnskole", "Vgs", "Fagskole", "Utdanning"],);
   }
 
   let tr = table.insertRow(-1);
 
-  for(let i = 0; i<arrHead.length; i++){
+  for(let i = 0; i < tableHead.length; i++){
     let header = document.createElement("th");
-    header.innerHTML = arrHead[i];
+    header.innerHTML = tableHead[i];
     tr.appendChild(header);
   }
 
-  for(let y=0; y<årstall.length; y++){
+  for(let y = 0; y < årstall.length; y++){
+
     tr = table.insertRow(-1);
 
-    for(let j = 0; j<arrHead.length; j++){
+    for(let j = 0; j< tableHead.length; j++){
       let td = document.createElement("td");
       td = tr.insertCell(-1);
       td.innerHTML = resultater[y][j];
     }
   }
-
   document.getElementById("detaljer").appendChild(table);
 }
 
@@ -193,35 +205,30 @@ function sammenligning_input(){
 
   var user_value = document.getElementById("nummer_1").value;
   var user_value2 = document.getElementById("nummer_2").value;
-  var found = false;
-  var found2 = false;
+  var found = true;
+  var found2 = true;
 
   for(var kommunenummer of befolkning.getIDs()){
     if(kommunenummer === user_value){
-      found = true
+      found = false
     }
     if(kommunenummer === user_value2){
-      var hei2 = user_value2
-      found2 = true;
-      break;
+      found2 = false;
     }
   }
-  if(found && found2 == true){
-    sammenligning(user_value, user_value2);
-  }else{
+  if (found || found2 == true){
     alert("Ugyldig kommunenummer. Prøv igjen.")
+  } else if (user_value == user_value2){
+    alert("Du må skrive inn to ulike kommunenummer.")
+  } else{
+    sammenligning(user_value, user_value2)
   }
 }
 
+
 function sammenligning(user_value, user_value2){
-
+  console.log("hei");
 }
-
-
-
-
-
-
 
 
 
@@ -232,7 +239,7 @@ function getPercent(nr, år){
     var kommune_objekt = this.data["elementer"][x];
     var kommunenummer = kommune_objekt["kommunenummer"];
 
-    if(nr==kommunenummer){
+    if(nr == kommunenummer){
       var menn = kommune_objekt["Menn"][år];
       var kvinner = kommune_objekt["Kvinner"][år];
       var begge = kommune_objekt["Begge kjønn"][år]
@@ -242,7 +249,7 @@ function getPercent(nr, år){
 }
 
 
-function getUtdanning(nr){
+function getUtdanning(nr, år){
 
   for(var x in this.data["elementer"]){
 
@@ -250,10 +257,11 @@ function getUtdanning(nr){
     var kommunenummer = kommune_objekt["kommunenummer"];
 
     if(nr == kommunenummer){
-      var unikort_menn = kommune_objekt["03a"]["Menn"]["2017"];
-      var unikort_kvinner = kommune_objekt["03a"]["Kvinner"]["2017"];
-      var unilang_menn = kommune_objekt["04a"]["Menn"]["2017"];
-      var unilang_kvinner = kommune_objekt["04a"]["Kvinner"]["2017"];
+      var unikort_menn = kommune_objekt["03a"]["Menn"][år];
+      var unikort_kvinner = kommune_objekt["03a"]["Kvinner"][år];
+      var unilang_menn = kommune_objekt["04a"]["Menn"][år];
+      var unilang_kvinner = kommune_objekt["04a"]["Kvinner"][år];
+
     }
   }
   return [unikort_menn, unikort_kvinner, unilang_menn, unilang_kvinner];
