@@ -57,6 +57,8 @@ function show_sammenligning(){
   document.getElementById("sammenligning").className = "show-me";
 }
 
+//---OVERSIKT--//
+
 oversikt_kjør = false;
 
 function oversikt(){
