@@ -79,6 +79,7 @@ function oversikt(){
   }
 }
 
+//---DETALJER--//
 
 function detaljer_input(){
 
@@ -146,6 +147,43 @@ function detaljer(nr){
   document.getElementById("detaljer").appendChild(liste);
 }
 
+//---SAMMENLIGNING--//
+
+function sammenligning_input(){
+
+  var user_value = document.getElementById("nummer_1").value;
+  var user_value2 = document.getElementById("nummer_2").value;
+  var found = false;
+  var found2 = false;
+
+  for(var kommunenummer of befolkning.getIDs()){
+    if(kommunenummer === user_value){
+      found = true
+    }
+    if(kommunenummer === user_value2){
+      var hei2 = user_value2
+      found2 = true;
+      break;
+    }
+  }
+  if(found && found2 == true){
+    sammenligning(user_value, user_value2);
+  }else{
+    alert("Ugyldig kommunenummer. Prøv igjen.")
+  }
+}
+
+function sammenligning(user_value, user_value2){
+  
+}
+
+
+
+
+
+
+
+
 
 function getPercent(nr, år){
 
@@ -180,11 +218,6 @@ function getUtdanning(nr){
   }
   return [unikort_menn, unikort_kvinner, unilang_menn, unilang_kvinner];
 }
-
-
-
-
-
 
 function getNames(id){
 
