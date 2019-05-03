@@ -29,3 +29,12 @@ body{
 .show-me{
   display: block;
 }
+
+#tabell th, td{
+  border: 1px solid black;
+}
+
+#tabell{
+  border-collapse: collapse;
+  width: 100%;
+}

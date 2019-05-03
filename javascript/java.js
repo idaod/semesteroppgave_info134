@@ -151,23 +151,16 @@ function detaljer(nr){
 
   document.getElementById("detaljer").appendChild(liste);
 
-  utregning_tabell(nr);
-}
-
-
-
-function utregning_tabell(nr){
-
-  console.log(sysselsetting.getPercent("0101", "2018"));
   detaljer_tabell(nr);
-}
 
+}
 
 
 function detaljer_tabell(nr){
 
+
   let table = document.createElement("table");
-  table.setAttribute("id", "myTable");
+  table.setAttribute("id", "tabell");
 
   let tableHead = ["Årstall", "Befolkning", "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Høyere utdanning"];
   let årstall = ["2007", "2009", "2011", "2013", "2015", "2017"];
@@ -175,7 +168,37 @@ function detaljer_tabell(nr){
   let resultater = [];
 
   for (let år of årstall){
-    resultater.push([år, befolkning.getTotal(nr, år)[2], "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Utdanning"],);
+
+//--Sysselsatte--//
+    var antall_menn_sysselsatt = Math.round((befolkning.getTotal(nr, år)[1] * sysselsetting.getPercent(nr, år)[1]) / 100);
+    var antall_kvinner_sysselsatt = Math.round((befolkning.getTotal(nr, år)[0] * sysselsetting.getPercent(nr, år)[0]) / 100);
+    var totalt_antall_sysselsatt = Math.round((antall_menn_sysselsatt + antall_kvinner_sysselsatt));
+    var totalt_antall_sysselsatte = totalt_antall_sysselsatt + "(" + sysselsetting.getPercent(nr, år)[2]; + "%)";
+
+//--HØYERE UTDANNING--//
+    // var samlet_uni_prc_menn = utdanning.getUtdanning(nr, år)[0] + utdanning.getUtdanning(nr, år)[2];
+    // var samlet_uni_prc_kvinner = utdanning.getUtdanning(nr, år)[1] + utdanning.getUtdanning(nr, år)[3];
+    var unikort_menn = utdanning.getUtdanning(nr, år)[0];
+    var unikort_kvinner = utdanning.getUtdanning(nr, år)[1];
+    var unilang_menn = utdanning.getUtdanning(nr, år)[2];
+    var unilang_kvinner = utdanning.getUtdanning(nr, år)[3];
+
+    var samlet_uni_prc_menn = unikort_menn + unilang_menn;
+    var samlet_uni_prc_kvinner = unikort_kvinner + unilang_kvinner;
+
+    var kvinner_befolkning_2017 = befolkning.getTotal(nr, år)[0];
+    var menn_befolkning_2017 = befolkning.getTotal(nr, år)[1];
+    var total_befolkning = befolkning.getTotal(nr, år);
+
+    var uni_menn_ant = Math.round((menn_befolkning_2017 * samlet_uni_prc_menn)/100);
+    var uni_kvinner_ant = Math.round((kvinner_befolkning_2017 * samlet_uni_prc_kvinner)/100);
+    var begge_ant_utd = Math.round(uni_menn_ant + uni_kvinner_ant);
+    var begge_prc_utd = Math.round((begge_ant_utd/total_befolkning)*100);
+
+    var total_antall_utdannede = begge_ant_utd + "(" + begge_prc_utd + "%)";
+
+    resultater.push([år, befolkning.getTotal(nr, år)[2], totalt_antall_sysselsatte, utdanning.getUtdanning(nr, år)[4], utdanning.getUtdanning(nr, år)[5], utdanning.getUtdanning(nr, år)[6], total_antall_utdannede],);
+
   }
 
   let tr = table.insertRow(-1);
@@ -225,9 +248,7 @@ function sammenligning_input(){
   }
 }
 
-
 function sammenligning(user_value, user_value2){
-  console.log("hei");
 }
 
 
@@ -262,9 +283,48 @@ function getUtdanning(nr, år){
       var unilang_menn = kommune_objekt["04a"]["Menn"][år];
       var unilang_kvinner = kommune_objekt["04a"]["Kvinner"][år];
 
+      befolkning_kvinner = befolkning.getTotal(nr, år)[0];
+      befolkning_menn = befolkning.getTotal(nr, år)[1];
+      total_befolkning = befolkning.getTotal(nr, år)[2];
+
+//---GRUNNSKOLE--//
+      var prc_menn_grunnskole = kommune_objekt["01"]["Menn"][år]
+      var prc_kvinner_grunnskole = kommune_objekt["01"]["Kvinner"][år]
+
+      var antall_kvinner_grunnskole = Math.round((befolkning_kvinner*prc_kvinner_grunnskole)/100);
+      var antall_menn_grunnskole = Math.round((befolkning_menn*prc_menn_grunnskole)/100);
+      var total_prosentandel_grunnskole = Math.round((totalt_antall_grunnskole/total_befolkning)*100);
+
+      var totalt_antall_grunnskole = antall_kvinner_grunnskole + antall_menn_grunnskole;
+      var grunnskole = totalt_antall_grunnskole + "(" + total_prosentandel_grunnskole + "%)";
+
+//----VGS----//
+      var prc_menn_vgs = kommune_objekt["02a"]["Menn"][år];
+      var prc_kvinner_vgs = kommune_objekt["02a"]["Kvinner"][år];
+
+      var antall_kvinner_vgs = Math.round((befolkning_kvinner*prc_kvinner_vgs)/100);
+      var antall_menn_vgs = Math.round((befolkning_menn*prc_menn_vgs)/100);
+      var total_prosentandel_vgs = Math.round((totalt_antall_vgs/total_befolkning)*100);
+
+      var totalt_antall_vgs = antall_kvinner_vgs + antall_menn_vgs;
+      var vgs = totalt_antall_vgs + "(" + total_prosentandel_vgs + "%)";
+
+//---FAGSKOLE---//
+
+      var prc_menn_fagskole = kommune_objekt["11"]["Menn"][år];
+      var prc_kvinner_fagskole = kommune_objekt["11"]["Kvinner"][år];
+
+      var antall_kvinner_fagskole = Math.round((befolkning_kvinner*prc_kvinner_fagskole)/100);
+      var antall_menn_fagskole = Math.round((befolkning_menn*prc_menn_fagskole)/100);
+      var total_prosentandel_fagskole = Math.round((totalt_antall_fagskole/total_befolkning)*100);
+
+      var totalt_antall_fagskole = antall_kvinner_fagskole + antall_menn_fagskole;
+      var fagskole = totalt_antall_fagskole + "(" + total_prosentandel_fagskole + "%)";
+
     }
   }
-  return [unikort_menn, unikort_kvinner, unilang_menn, unilang_kvinner];
+
+  return [unikort_menn, unikort_kvinner, unilang_menn, unilang_kvinner, grunnskole, vgs, fagskole];
 }
 
 function getNames(id){
@@ -328,4 +388,8 @@ function getTotal(id, år){
 
   //Insert loading message?
   //Få detaljer til å ikke stå flere ganger
-  //Lage funksjoner til tabellen i detaljer.
+  //Få opp prosent som ikke NAN
+  //Kan vi gjøre det på en ryddigere måte
+  //Gå over variabelnavn som unikort_menn, gjøre det mer forståelig for andre.
+  //Fikse tabell til sammenligning
+  //Fikse tabell til stor skjerm (media queries)
