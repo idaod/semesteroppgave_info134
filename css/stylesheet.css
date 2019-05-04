@@ -30,11 +30,29 @@ body{
   display: block;
 }
 
-#tabell th, td{
+th, td{
   border: 1px solid black;
+  padding: 8px;
 }
 
-#tabell{
+@media only screen and (min-width: 580px){
+
+  th, td{
+    display: flex;
+  }
+
+  th{
+    flex-flow: wrap;
+  }
+
+}
+
+
+/* td{
+  flex-direction: column;
+} */
+
+table{
   border-collapse: collapse;
   width: 100%;
 }
