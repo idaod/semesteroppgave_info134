@@ -11,10 +11,13 @@ const URL_befolkning = "http://wildboy.uib.no/~tpe056/folk/104857.json";
 const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 
+a = 0
+
 function parset_tekst(url, objekt) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    console.log(this.status);
+    console.log("Datasett" + a + "   "+ this.status);
+    a++;
     if (this.readyState == 4 && this.status == 200) {
       var data = JSON.parse(this.responseText);
       objekt.data = data;
@@ -176,11 +179,33 @@ function detaljer_tabell(nr){
     resultater.push([år, befolkning.getTotal(nr, år)[2], sysselsetting.getSysselsatte(nr, år)[2], utdanning.getUtdanning(nr, år)[3], utdanning.getUtdanning(nr, år)[4], utdanning.getUtdanning(nr, år)[5], utdanning.getUtdanning(nr, år)[2]],);
   }
 
+  // var tr = tabell.insertRow(-1);
+  //
+  // for(var i = 0; i < overskrifter.length; i++){
+  //   var header = document.createElement("th");
+  //   header.innerHTML = overskrifter[i];
+  //   tr.appendChild(header);
+  // }
+  //
+  // for(var y = 0; y < årstall.length; y++){
+  //   tr = tabell.insertRow(-1);
+  //
+  //   for(var j = 0; j< overskrifter.length; j++){
+  //     var td = document.createElement("td");
+  //     td = tr.insertCell(-1);
+  //     td.innerHTML = resultater[y][j];
+  //   }
+  // }
+  // document.getElementById("detaljer").appendChild(tabell);
+
   var tr = tabell.insertRow(-1);
+  //var div = document.createElement("div");
 
   for(var i = 0; i < overskrifter.length; i++){
     var header = document.createElement("th");
+    //header.setAttribute("id", "tabell");
     header.innerHTML = overskrifter[i];
+    //div.appendChild(header);
     tr.appendChild(header);
   }
 
@@ -223,12 +248,52 @@ function sammenligning_input(){
   } else if (user_value == user_value2){
     alert("Du må skrive inn to ulike kommunenummer.")
   } else{
-    sammenligning_tabell_1(user_value)
-    sammenligning_tabell_1(user_value2)
+    sammenligning_tabell(user_value, user_value2);
+    sammenligning_tabell(user_value, user_value2);
   }
 }
 
-function sammenligning_tabell_1(nr){
+// function sammenligning_utregning(){
+//
+//   var årstall = ["2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"];
+//   var kommmune_1 = sammenligning_input()[0]
+//   var kommmune_2 = sammenligning_input()[1]
+//
+//   i = 0
+//
+//   for (var år of årstall){
+//     i++;
+//     var årstall_count = årstall[i]
+//
+//     var sammenligning_kvinner_kommune1 = sysselsetting.getSysselsatte(user_value, årstall_count)[3] - sysselsetting.getSysselsatte(nr, år)[3];
+//     var sammenligning_menn_kommune1 = sysselsetting.getSysselsatte(user_value, årstall_count)[2] - sysselsetting.getSysselsatte(nr, år)[2];
+//
+//     var sammenligning_kvinner_kommune2 = sysselsetting.getSysselsatte(user_value2, årstall_count)[3] - sysselsetting.getSysselsatte(nr, år)[3];
+//     var sammenligning_menn_kommune2 = sysselsetting.getSysselsatte(user_value2, årstall_count)[2] - sysselsetting.getSysselsatte(nr, år)[2];
+//
+//     if(sammenligning_kvinner_kommune1 > sammenligning_kvinner_kommune2){
+//       tekst_kvinner = sammenligning_kvinner_kommune1;
+//       tekst_kvinner.setAttribute("class", "bold");
+//     }else{
+//       tekst_kvinner = sammenligning_kvinner_kommune2;
+//       tekst_kvinner.setAttribute("class", "bold");
+//     }
+//
+//     if(sammenligning_menn_kommune1 > sammenligning_menn_kommune2){
+//       tekst_menn_kommune1 = sammenligning_menn_kommune1;
+//       tekst_menn_kommune2 = sammenligning_menn_kommune2;
+//       tekst_menn_kommune1.setAttribute("class", "bold");
+//     }else{
+//       tekst_menn_kommune1 = sammenligning_menn_kommune1;
+//       tekst_menn_kommune2 = sammenligning_menn_kommune2;
+//       tekst_menn_kommune2.setAttribute("class", "bold");
+//     }
+//   }
+//   return [tekst_kvinner, tekst_menn];
+// }
+
+
+function sammenligning_tabell(nr, user_value, user_value2){
 
   var tabell_kommune = document.createElement("table");
 
@@ -236,7 +301,41 @@ function sammenligning_tabell_1(nr){
   var årstall = ["2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"];
   var resultater_kommune = [];
 
+  i = 0
+
   for (var år of årstall){
+
+    i++;
+
+    var årstall_count = årstall[i]
+
+    var sammenligning_kvinner_kommune1 = sysselsetting.getSysselsatte(user_value, årstall_count)[3] - sysselsetting.getSysselsatte(nr, år)[3];
+    var sammenligning_menn_kommune1 = sysselsetting.getSysselsatte(user_value, årstall_count)[2] - sysselsetting.getSysselsatte(nr, år)[2];
+
+    var sammenligning_kvinner_kommune2 = sysselsetting.getSysselsatte(user_value2, årstall_count)[3] - sysselsetting.getSysselsatte(nr, år)[3];
+    var sammenligning_menn_kommune2 = sysselsetting.getSysselsatte(user_value2, årstall_count)[2] - sysselsetting.getSysselsatte(nr, år)[2];
+
+    if(sammenligning_kvinner_kommune1 > sammenligning_kvinner_kommune2){
+      tekst_kvinner_kommune1 = document.createTextNode(sammenligning_kvinner_kommune1);
+      tekst_kvinner_kommune2 = sammenligning_kvinner_kommune2;
+      tekst_kvinner_1.setAttribute("class", "bold");
+    }else{
+      tekst_kvinner_kommune1 = sammenligning_kvinner_kommune1;
+      tekst_kvinner_kommune2 = document.createTextNode(sammenligning_kvinner_kommune2);
+      tekst_kvinner_kommune2.setAttribute("class", "bold");
+    }
+
+    if(sammenligning_menn_kommune1 > sammenligning_menn_kommune2){
+      tekst_menn_kommune1 = document.createTextNode(sammenligning_menn_kommune1);
+      tekst_menn_kommune2 = sammenligning_menn_kommune2;
+      tekst_menn_kommune1.ClassListAdd("class", "bold");
+    }else{
+      tekst_menn_kommune1 = sammenligning_menn_kommune1;
+      tekst_menn_kommune2 = document.createTextNode(sammenligning_menn_kommune2);
+      tekst_menn_kommune2.setAttribute("class", "bold");
+    }
+
+
     resultater_kommune.push([år, sysselsetting.getSysselsatte(nr, år)[1], sysselsetting.getSysselsatte(nr, år)[0]]);
   }
 
@@ -258,15 +357,14 @@ function sammenligning_tabell_1(nr){
       td.innerHTML = resultater_kommune[y][j];
     }
   }
-
   kommune_overskrift = document.createElement("h3");
   kommune = document.createTextNode("Kommune: " + befolkning.getNames(nr) + ", Kommunenummer: " + nr);
   kommune_overskrift.appendChild(kommune)
 
   document.getElementById("tabell_sammenligning").appendChild(kommune_overskrift);
   document.getElementById("tabell_sammenligning").appendChild(tabell_kommune);
-}
 
+}
 
 
 
@@ -294,12 +392,12 @@ function getSysselsatte(nr, år){
       var antall_sysselsatte_kvinner = Math.round((befolkning_kvinner * kvinner_prc) / 100);
       var antall_sysselsatte_totalt = Math.round((antall_sysselsatte_kvinner + antall_sysselsatte_menn));
 
-      var sysselsatte_kvinner = antall_sysselsatte_kvinner + "(" + kvinner_prc + "%)"
-      var sysselsatte_menn = antall_sysselsatte_menn + "(" + menn_prc + "%)"
-      var sysselsatte_begge = antall_sysselsatte_totalt + "(" + begge_prc + "%)"
+      var sysselsatte_kvinner = antall_sysselsatte_kvinner + "(" + kvinner_prc + "%)";
+      var sysselsatte_menn = antall_sysselsatte_menn + "(" + menn_prc + "%)";
+      var sysselsatte_begge = antall_sysselsatte_totalt + "(" + begge_prc + "%)";
     }
   }
-  return [sysselsatte_kvinner, sysselsatte_menn, sysselsatte_begge];
+  return [sysselsatte_kvinner, sysselsatte_menn, sysselsatte_begge, kvinner_prc, menn_prc, begge_prc];
 }
 
 
@@ -334,7 +432,6 @@ function getUtdanning(nr, år){
       var høyere_utdanning_kvinner = utdannede_kvinner_antall + "(" + samvar_utdannede_prc_kvinner + "%)";
       var høyere_utdanning_menn = utdannede_menn_antall + "(" + samvar_utdannede_prc_menn + "%)";
       var høyere_utdanning_begge = begge_antall_utdannede + "(" + begge_prc_utdannede + "%)";
-
 
 //---GRUNNSKOLE--//
 
@@ -384,7 +481,7 @@ function getNames(id){
   for (var name in this.data["elementer"]){
     var kommune_objekt = this.data["elementer"][name];
     var kommunenummer = kommune_objekt["kommunenummer"];
-    if(id==kommunenummer){
+    if(id == kommunenummer){
       list.push(name);
     }
   }
@@ -416,7 +513,6 @@ function getInfo(id){
 
 function getTotal(id, år){
 
-
     for(var kommune in this.data["elementer"]){
 
       var kommune_objekt = this.data["elementer"][kommune];
@@ -430,7 +526,7 @@ function getTotal(id, år){
         return [kvinner, menn, befolkning]
       }
     }
-  };
+  }
 
 
   //for x of y henter ut elementer, for x in y finner index
