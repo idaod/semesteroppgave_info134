@@ -42,26 +42,23 @@ th, td{
 
 table{
   border-collapse: collapse;
-  width: 100%;
 }
 
 @media only screen and (min-width:650px){
 
   table{
-    overflow-x: auto;
     border-collapse: collapse;
+    border-radius: 5px;
   }
 
   tr{
-    display:block;
+    display: block;
     float:left;
   }
 
-  th{
+  th, td{
     display: block;
-  }
-
-  td{
-    display: block;
+    border: 1px solid black;
+    padding: 8px;
   }
 }
