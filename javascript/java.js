@@ -536,5 +536,5 @@ function getTotal(id, år){
 
   //for x of y henter ut elementer, for x in y finner index
 
-  //Fikse tabell til stor skjerm (media queries)
   //Rapport
+  //fikse scrollbar til stor skjerm
