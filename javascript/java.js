@@ -11,13 +11,9 @@ const URL_befolkning = "http://wildboy.uib.no/~tpe056/folk/104857.json";
 const URL_sysselsetting = "http://wildboy.uib.no/~tpe056/folk/100145.json";
 const URL_utdanning = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 
-a = 0
-
 function parset_tekst(url, objekt) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    console.log("Datasett" + a + "   "+ this.status);
-    a++;
     if (this.readyState == 4 && this.status == 200) {
       var data = JSON.parse(this.responseText);
       objekt.data = data;
