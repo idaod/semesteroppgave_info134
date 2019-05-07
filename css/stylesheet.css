@@ -30,39 +30,38 @@ body{
   display: block;
 }
 
+.fet-skrift{
+  font-weight: bold;
+}
+
+
 th, td{
   border: 1px solid black;
   padding: 8px;
 }
-
-/* @media only screen and (min-width: 580px){
-
-  th, td{
-    display: flex;
-  }
-
-  th{
-    flex-flow: wrap;
-  }
-
-} */
-
-
-/* td{
-  flex-direction: column;
-} */
 
 table{
   border-collapse: collapse;
   width: 100%;
 }
 
-.fet-skrift{
-  font-weight: bold;
-}
+@media only screen and (min-width:650px){
 
-/* #tabell{
-  display: flex;
-  flex-direction: column;
-  float:right;
-} */
+  table{
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  tr{
+    display:block;
+    float:left;
+  }
+
+  th{
+    display: block;
+  }
+
+  td{
+    display: block;
+  }
+}

@@ -37,14 +37,14 @@
     </div>
 
     <div id="oversikt" class="oversikt hide-me">
-      <h3>Her har du en oversikt over alle kommuner i Norge</h3>
+      <h3>Oversikt over alle kommuner i Norge</h3>
     </div>
 
     <div id="detaljer" class="detaljer hide-me">
       <form class="center">
         <p>Skriv inn et kommunenummer for info om valgt kommune.</p>
         <input type="text" id="nummer" placeholder="Kommunenummer">
-        <input type="button" onclick="detaljer_input();" value="Send"></input>
+        <input type="button" onclick="detaljer_input();" value="Søk"></input>
       </form>
       <div id="detaljer_div"></div>
     </div>
@@ -54,9 +54,12 @@
         <p>Skriv inn to kommunenummer for å sammenligne dem.</p>
         <input type="text" id="nummer_1" placeholder="Kommunenummer">
         <input type="text" id="nummer_2" placeholder="Kommunenummer">
-        <input type="button" onclick="sammenligning_input();" value="Send"></input>
+        <input type="button" onclick="sammenligning_input();" value="Sammenlign"></input>
+        <p>Tabellene viser historisk utvikling av sysselsetting for menn og kvinner i begge kommunene.</p>
+        <p>For hvert år og for hver kjønnskaterori er høyest vekst i prosentpoeng markert i fet tekst.</p>
+        <p>Der hvor kommunene har lik vekst i prosentpoeng er det ingen markering.</p>
       </form>
-      <div id="tabell_sammenligning"></div>
+      <div class ="center" id="tabell_sammenligning"></div>
     </div>
 
 

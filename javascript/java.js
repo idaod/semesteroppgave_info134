@@ -267,7 +267,12 @@ function sammenligning_tabell(user_value, user_value2){
     var menn_tabell_1;
     var menn_tabell_2;
 
-    if(sammenligning_kvinner_kommune1 > sammenligning_kvinner_kommune2){
+
+    if(år == "2018"){
+      kvinner_tabell_1 = sysselsetting.getSysselsatte(user_value, "2018")[0];
+      kvinner_tabell_2 = sysselsetting.getSysselsatte(user_value2, "2018")[0];
+    }
+    else if(sammenligning_kvinner_kommune1 > sammenligning_kvinner_kommune2){
 
       kvinner_tabell_1 = sysselsetting.getSysselsatte(user_value, år)[0].bold();
       kvinner_tabell_2 = sysselsetting.getSysselsatte(user_value2, år)[0];
@@ -282,7 +287,11 @@ function sammenligning_tabell(user_value, user_value2){
       kvinner_tabell_2 = sysselsetting.getSysselsatte(user_value2, år)[0];
     }
 
-    if(sammenligning_menn_kommune1 > sammenligning_menn_kommune2){
+    if(år == "2018"){
+      menn_tabell_1 = sysselsetting.getSysselsatte(user_value, "2018")[1];
+      menn_tabell_2 = sysselsetting.getSysselsatte(user_value2, "2018")[1];
+    }
+    else if(sammenligning_menn_kommune1 > sammenligning_menn_kommune2){
 
       menn_tabell_1 = sysselsetting.getSysselsatte(user_value, år)[1].bold();
       menn_tabell_2 = sysselsetting.getSysselsatte(user_value2, år)[1]
@@ -528,4 +537,4 @@ function getTotal(id, år){
   //for x of y henter ut elementer, for x in y finner index
 
   //Fikse tabell til stor skjerm (media queries)
-  // Få opp verdiene for 2018 på sammenligning.
+  //Rapport
