@@ -57,6 +57,8 @@ function show_sammenligning(){
 }
 
 //---OVERSIKT--//
+//Oversikt_kjør gjør slik at selv om oversikt blir trykket på flere ganger, vil den kun kjøre funksjonen den første gangen.
+//Dette er fordi oversikt_kjør blir true etter første gang og dermed returnerer funksjonen bare false videre, og utfører ikke resten av funksjonen lenger.
 
 oversikt_kjør = false;
 
@@ -168,10 +170,6 @@ function detaljer(nr){
 
 function detaljer_tabell(nr){
 
-
-  var tabell = document.createElement("table");
-  // tabell.setAttribute("id", "tabell_detaljer");
-
   var overskrifter = ["Årstall", "Befolkning", "Sysselsatte", "Grunnskole", "Vgs", "Fagskole", "Høyere utdanning"];
   var årstall = ["2007", "2009", "2011", "2013", "2015", "2017"];
   var resultater = [];
@@ -180,6 +178,7 @@ function detaljer_tabell(nr){
     resultater.push([år, befolkning.getTotal(nr, år)[2], sysselsetting.getSysselsatte(nr, år)[2], utdanning.getUtdanning(nr, år)[3], utdanning.getUtdanning(nr, år)[4], utdanning.getUtdanning(nr, år)[5], utdanning.getUtdanning(nr, år)[2]],);
   }
 
+  var tabell = document.createElement("table");
   var tr = tabell.insertRow(-1);
 
   for(var i = 0; i < overskrifter.length; i++){
@@ -200,9 +199,6 @@ function detaljer_tabell(nr){
   document.getElementById("detaljer_div").appendChild(tabell);
 
 }
-
-
-
 
 
 //---SAMMENLIGNING--//
@@ -241,7 +237,6 @@ function sammenligning_tabell(user_value, user_value2){
 
   var resultater_kommune_1 = [];
   var resultater_kommune_2 = [];
-
 
   i = 0;
 
@@ -307,8 +302,6 @@ function sammenligning_tabell(user_value, user_value2){
     resultater_kommune_2.push([år, menn_tabell_2, kvinner_tabell_2]);
   }
 
-// resultater_kommune_1 = resultater_kommune_1.slice
-// resultater_kommune_1.push(sysselsetting.getSysselsatte([user_value, "2018"]);
 
 //-----Tabell 1------//
   var tabell_kommune_1 = document.createElement("table");
@@ -338,7 +331,6 @@ function sammenligning_tabell(user_value, user_value2){
   document.getElementById("tabell_sammenligning").appendChild(tabell_kommune_1);
 
   //-----Tabell 2---------//
-
   var tabell_kommune_2 = document.createElement("table");
   var tr_2 = tabell_kommune_2.insertRow(-1);
 
@@ -366,11 +358,6 @@ function sammenligning_tabell(user_value, user_value2){
   document.getElementById("tabell_sammenligning").appendChild(tabell_kommune_2);
 
 }
-
-
-
-
-
 
 
 function getSysselsatte(nr, år){
@@ -528,9 +515,6 @@ function getTotal(id, år){
       }
     }
   }
-
-
-  //for x of y henter ut elementer, for x in y finner index
 
   //Rapport
   //fikse scrollbar til stor skjerm
