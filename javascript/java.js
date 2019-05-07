@@ -104,23 +104,24 @@ function detaljer_input(){
 
 function detaljer(nr){
 
-  document.getElementById("detaljer_div").innerHTML = ""; // LAG NY ID!!!
+  document.getElementById("detaljer_div").innerHTML = "";
 
   var kommune_navn = befolkning.getNames(nr);
   var kommune_info = befolkning.getInfo(nr);
   var kommune_befolkning = befolkning.getTotal(nr,"2018")[2];
 
-  var sysselsatte_kvinner = sysselsetting.getSysselsatte(nr, "2018")[0]
-  var sysselsatte_menn = sysselsetting.getSysselsatte(nr, "2018")[1]
-  var totalt_sysselsatte = sysselsetting.getSysselsatte(nr, "2018")[2]
+  var sysselsatte_kvinner = sysselsetting.getSysselsatte(nr, "2018")[0];
+  var sysselsatte_menn = sysselsetting.getSysselsatte(nr, "2018")[1];
+  var totalt_sysselsatte = sysselsetting.getSysselsatte(nr, "2018")[2];
 
-  var høyere_utdanning_kvinner = utdanning.getUtdanning(nr, "2017")[0]
-  var høyere_utdanning_menn = utdanning.getUtdanning(nr, "2017")[1]
+  var høyere_utdanning_kvinner = utdanning.getUtdanning(nr, "2017")[0];
+  var høyere_utdanning_menn = utdanning.getUtdanning(nr, "2017")[1];
   var høyere_utdanning_begge = utdanning.getUtdanning(nr, "2017")[2];
 
   var liste = document.createElement("ul");
-  var liste_målinger = document.createElement("h3");
-  var liste_oversikt = document.createElement("h4");
+  var liste_målinger = document.createElement("h4");
+  var liste_målinger_2 = document.createElement("h4");
+  var liste_oversikt = document.createElement("h3");
 
   var liste_sysselsatte_menn = document.createElement("li")
   var liste_sysselsatte_kvinner = document.createElement("li")
@@ -130,7 +131,8 @@ function detaljer(nr){
   var liste_utdannede_kvinner = document.createElement("li");
   var liste_utdannede_totalt = document.createElement("li");
 
-  var måling = document.createTextNode("Siste målinger fra 2018");
+  var måling_2018 = document.createTextNode("Siste målinger fra 2018");
+  var måling_2017 = document.createTextNode("Siste målinger fra 2017");
   var oversikt = document.createTextNode("Kommune: "+ kommune_navn + ", " + "Kommunenummer: " + nr + ", " +  "Befolkning: " + kommune_befolkning)
 
   var sysselsatte_menn = document.createTextNode("Antall sysselsatte menn: " + sysselsatte_menn);
@@ -141,22 +143,23 @@ function detaljer(nr){
   var utdanninger_kvinner = document.createTextNode("Antall kvinner med høyere utdanning: " + høyere_utdanning_kvinner);
   var utdanninger_totalt = document.createTextNode("Total befolkning med høyere utdanning: " + høyere_utdanning_begge);
 
-  liste_målinger.appendChild(måling);
+  liste_målinger.appendChild(måling_2018);
+  liste_målinger_2.appendChild(måling_2017);
   liste_oversikt.appendChild(oversikt);
 
   liste_sysselsatte_menn.appendChild(sysselsatte_menn);
   liste_sysselsatte_kvinner.appendChild(sysselsatte_kvinner);
   liste_sysselsatte_totalt.appendChild(sysselsatte_totalt);
-
   liste_utdannede_menn.appendChild(utdanninger_menn);
   liste_utdannede_kvinner.appendChild(utdanninger_kvinner);
   liste_utdannede_totalt.appendChild(utdanninger_totalt);
 
-  liste.appendChild(liste_målinger);
   liste.appendChild(liste_oversikt);
+  liste.appendChild(liste_målinger);
   liste.appendChild(liste_sysselsatte_menn);
   liste.appendChild(liste_sysselsatte_kvinner);
   liste.appendChild(liste_sysselsatte_totalt);
+  liste.appendChild(liste_målinger_2);
   liste.appendChild(liste_utdannede_menn);
   liste.appendChild(liste_utdannede_kvinner);
   liste.appendChild(liste_utdannede_totalt);
@@ -232,49 +235,10 @@ function sammenligning_input(){
   }
 }
 
-// function sammenligning_utregning(){
-//
-//   var årstall = ["2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"];
-//   var kommmune_1 = sammenligning_input()[0]
-//   var kommmune_2 = sammenligning_input()[1]
-//
-//   i = 0
-//
-//   for (var år of årstall){
-//     i++;
-//     var årstall_count = årstall[i]
-//
-//     var sammenligning_kvinner_kommune1 = sysselsetting.getSysselsatte(user_value, årstall_count)[3] - sysselsetting.getSysselsatte(nr, år)[3];
-//     var sammenligning_menn_kommune1 = sysselsetting.getSysselsatte(user_value, årstall_count)[2] - sysselsetting.getSysselsatte(nr, år)[2];
-//
-//     var sammenligning_kvinner_kommune2 = sysselsetting.getSysselsatte(user_value2, årstall_count)[3] - sysselsetting.getSysselsatte(nr, år)[3];
-//     var sammenligning_menn_kommune2 = sysselsetting.getSysselsatte(user_value2, årstall_count)[2] - sysselsetting.getSysselsatte(nr, år)[2];
-//
-//     if(sammenligning_kvinner_kommune1 > sammenligning_kvinner_kommune2){
-//       tekst_kvinner = sammenligning_kvinner_kommune1;
-//       tekst_kvinner.setAttribute("class", "bold");
-//     }else{
-//       tekst_kvinner = sammenligning_kvinner_kommune2;
-//       tekst_kvinner.setAttribute("class", "bold");
-//     }
-//
-//     if(sammenligning_menn_kommune1 > sammenligning_menn_kommune2){
-//       tekst_menn_kommune1 = sammenligning_menn_kommune1;
-//       tekst_menn_kommune2 = sammenligning_menn_kommune2;
-//       tekst_menn_kommune1.setAttribute("class", "bold");
-//     }else{
-//       tekst_menn_kommune1 = sammenligning_menn_kommune1;
-//       tekst_menn_kommune2 = sammenligning_menn_kommune2;
-//       tekst_menn_kommune2.setAttribute("class", "bold");
-//     }
-//   }
-//   return [tekst_kvinner, tekst_menn];
-// }
-
 
 function sammenligning_tabell(user_value, user_value2){
 
-  var tabell_kommune_1 = document.createElement("table");
+  document.getElementById("tabell_sammenligning").innerHTML = "";
 
   var overskrifter = ["År", "Menn", "Kvinner"];
   var årstall = ["2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"];
@@ -283,19 +247,19 @@ function sammenligning_tabell(user_value, user_value2){
   var resultater_kommune_2 = [];
 
 
-  i = 0
+  i = 0;
 
   for (var år of årstall){
 
     i++;
 
-    var årstall_count = årstall[i]
+    var årstall_count = årstall[i];
 
-    var sammenligning_kvinner_kommune1 = parseInt(sysselsetting.getSysselsatte(user_value, årstall_count)[3] - sysselsetting.getSysselsatte(user_value2, år)[3]);
-    var sammenligning_menn_kommune1 = parseInt(sysselsetting.getSysselsatte(user_value, årstall_count)[4] - sysselsetting.getSysselsatte(user_value2, år)[4]);
+    var sammenligning_kvinner_kommune1 = parseInt(sysselsetting.getSysselsatte(user_value, årstall_count)[3] - sysselsetting.getSysselsatte(user_value, år)[3]);
+    var sammenligning_kvinner_kommune2 = parseInt(sysselsetting.getSysselsatte(user_value2, årstall_count)[3] - sysselsetting.getSysselsatte(user_value2, år)[3]);
 
-    var sammenligning_kvinner_kommune2 = parseInt(sysselsetting.getSysselsatte(user_value2, årstall_count)[3] - sysselsetting.getSysselsatte(user_value, år)[3]);
-    var sammenligning_menn_kommune2 = parseInt(sysselsetting.getSysselsatte(user_value2, årstall_count)[4] - sysselsetting.getSysselsatte(user_value, år)[4]);
+    var sammenligning_menn_kommune1 = parseInt(sysselsetting.getSysselsatte(user_value, årstall_count)[4] - sysselsetting.getSysselsatte(user_value, år)[4]);
+    var sammenligning_menn_kommune2 = parseInt(sysselsetting.getSysselsatte(user_value2, årstall_count)[4] - sysselsetting.getSysselsatte(user_value2, år)[4]);
 
     var kvinner_tabell_1;
     var kvinner_tabell_2;
@@ -307,14 +271,15 @@ function sammenligning_tabell(user_value, user_value2){
 
       kvinner_tabell_1 = sysselsetting.getSysselsatte(user_value, år)[0].bold();
       kvinner_tabell_2 = sysselsetting.getSysselsatte(user_value2, år)[0];
-      console.log("Hei 1" )
-
 
     }else if(sammenligning_kvinner_kommune1 < sammenligning_kvinner_kommune2){
 
       kvinner_tabell_1 = sysselsetting.getSysselsatte(user_value, år)[0];
       kvinner_tabell_2 = sysselsetting.getSysselsatte(user_value2, år)[0].bold();
-      console.log("Hei 2" )
+
+    }else if(sammenligning_kvinner_kommune1 == sammenligning_kvinner_kommune2){
+      kvinner_tabell_1 = sysselsetting.getSysselsatte(user_value, år)[0];
+      kvinner_tabell_2 = sysselsetting.getSysselsatte(user_value2, år)[0];
     }
 
     if(sammenligning_menn_kommune1 > sammenligning_menn_kommune2){
@@ -322,20 +287,26 @@ function sammenligning_tabell(user_value, user_value2){
       menn_tabell_1 = sysselsetting.getSysselsatte(user_value, år)[1].bold();
       menn_tabell_2 = sysselsetting.getSysselsatte(user_value2, år)[1]
 
-      console.log("Hei 3" )
-
     }else if(sammenligning_menn_kommune1 < sammenligning_menn_kommune2){
 
-      menn_tabell_1 = sysselsetting.getSysselsatte(user_value, år)[1]
+      menn_tabell_1 = sysselsetting.getSysselsatte(user_value, år)[1];
       menn_tabell_2 = sysselsetting.getSysselsatte(user_value2, år)[1].bold();
 
-      console.log("Hei 4" )
+    }else if(sammenligning_menn_kommune1 == sammenligning_menn_kommune2){
 
+      menn_tabell_1 = sysselsetting.getSysselsatte(user_value, år)[1];
+      menn_tabell_2 = sysselsetting.getSysselsatte(user_value2, år)[1];
     }
 
     resultater_kommune_1.push([år, menn_tabell_1, kvinner_tabell_1]);
+    resultater_kommune_2.push([år, menn_tabell_2, kvinner_tabell_2]);
   }
 
+// resultater_kommune_1 = resultater_kommune_1.slice
+// resultater_kommune_1.push(sysselsetting.getSysselsatte([user_value, "2018"]);
+
+//-----Tabell 1------//
+  var tabell_kommune_1 = document.createElement("table");
   var tr = tabell_kommune_1.insertRow(-1);
 
   for(var i = 0; i < overskrifter.length; i++){
@@ -361,6 +332,34 @@ function sammenligning_tabell(user_value, user_value2){
   document.getElementById("tabell_sammenligning").appendChild(kommune_overskrift);
   document.getElementById("tabell_sammenligning").appendChild(tabell_kommune_1);
 
+  //-----Tabell 2---------//
+
+  var tabell_kommune_2 = document.createElement("table");
+  var tr_2 = tabell_kommune_2.insertRow(-1);
+
+  for(var ii = 0; ii < overskrifter.length; ii++){
+    var header_2 = document.createElement("th");
+    header_2.innerHTML = overskrifter[ii];
+    tr_2.appendChild(header_2);
+  }
+
+  for(var yy = 0; yy < årstall.length; yy++){
+
+    tr_2 = tabell_kommune_2.insertRow(-1);
+
+    for(var jj = 0; jj< overskrifter.length; jj++){
+      var td_2 = document.createElement("td");
+      td_2 = tr_2.insertCell(-1);
+      td_2.innerHTML = resultater_kommune_2[yy][jj];
+    }
+  }
+  kommune_overskrift_2 = document.createElement("h3");
+  kommune_2 = document.createTextNode("Kommune: " + befolkning.getNames(user_value2) + ", Kommunenummer: " + user_value2);
+  kommune_overskrift_2.appendChild(kommune_2);
+
+  document.getElementById("tabell_sammenligning").appendChild(kommune_overskrift_2);
+  document.getElementById("tabell_sammenligning").appendChild(tabell_kommune_2);
+
 }
 
 
@@ -380,7 +379,7 @@ function getSysselsatte(nr, år){
 
       var menn_prc = kommune_objekt["Menn"][år];
       var kvinner_prc = kommune_objekt["Kvinner"][år];
-      var begge_prc = kommune_objekt["Begge kjønn"][år]
+      var begge_prc = kommune_objekt["Begge kjønn"][år];
 
       var befolkning_kvinner = parseInt(befolkning.getTotal(nr, år)[0]);
       var befolkning_menn = parseInt(befolkning.getTotal(nr, år)[1]);
@@ -528,7 +527,5 @@ function getTotal(id, år){
 
   //for x of y henter ut elementer, for x in y finner index
 
-  //Få detaljer og sammenligning til å ikke stå flere ganger
-  //Markere prosentpoeng i sammenligning
   //Fikse tabell til stor skjerm (media queries)
-  // Lenkene til SSB funker ikke
+  // Få opp verdiene for 2018 på sammenligning.
