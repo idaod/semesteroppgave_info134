@@ -518,3 +518,4 @@ function getTotal(id, år){
 
   //Rapport
   //fikse scrollbar til stor skjerm
+  //hei
